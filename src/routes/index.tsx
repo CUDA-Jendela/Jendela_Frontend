@@ -1,8 +1,9 @@
 import { Outlet, RouteObject, createBrowserRouter } from "react-router-dom";
 import { Home } from "@/pages";
 import { Navbar, Footer } from "@/components";
+import Login from "@/pages/Login";
 
-const AuthProviderLayout = () => {
+const MainLayout = () => {
     return (
         <>
             <Navbar />
@@ -12,14 +13,32 @@ const AuthProviderLayout = () => {
     );
 };
 
+const AuthLayout = () => {
+    return (
+        <>
+            <Outlet />
+        </>
+    );
+};
+
 const routes: RouteObject[] = [
     {
         path: "/",
-        element: <AuthProviderLayout />,
+        element: <MainLayout />,
         children: [
             {
                 path: "/",
                 element: <Home />,
+            }
+        ],
+    },
+    {
+        path: "/login",
+        element: <AuthLayout />,
+        children: [
+            {
+                path: "/login",
+                element: <Login />,
             }
         ],
     },
