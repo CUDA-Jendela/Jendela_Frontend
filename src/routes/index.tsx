@@ -1,25 +1,23 @@
 import { Outlet, RouteObject, createBrowserRouter } from "react-router-dom";
-import { Home, Login, Register } from "@/pages";
-import { Navbar, Footer } from "@/components";
-import SetupProfileCustomer from "@/pages/SetupProfileCustomer";
-import SetupProfileNGO from "@/pages/SetupProfileNGO";
-import SetupProfileBusiness from "@/pages/SetupProfileBusiness";
+import { Home, Login, Register, SetupProfileCustomer, SetupProfileNGO, SetupProfileBusiness } from "@/pages";
+import { ProtectedRoute, Navbar, Footer } from "@/components";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const MainLayout = () => {
     return (
-        <>
+        <AuthProvider>
             <Navbar />
             <Outlet />
             <Footer />
-        </>
+        </AuthProvider>
     );
 };
 
 const AuthLayout = () => {
     return (
-        <>
+        <AuthProvider>
             <Outlet />
-        </>
+        </AuthProvider>
     );
 };
 
@@ -48,15 +46,27 @@ const routes: RouteObject[] = [
             },
             {
                 path: "/setup-cust",
-                element: <SetupProfileCustomer />,
+                element: (
+                    <ProtectedRoute roles={["customer"]}>
+                        <SetupProfileCustomer />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: "/setup-ngo",
-                element: <SetupProfileNGO />,
+                element: (
+                    <ProtectedRoute roles={["ngo"]}>
+                        <SetupProfileNGO />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: "/setup-business",
-                element: <SetupProfileBusiness />,
+                element: (
+                    <ProtectedRoute roles={["business"]}>
+                        <SetupProfileBusiness />
+                    </ProtectedRoute>
+                ),
             },
         ],
     },
