@@ -1,22 +1,27 @@
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Select } from "@/components/ui/select";
 import illustrationImg from "@/assets/images/register_image.jpg";
 import logo from "@/assets/logo_white.png";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const formSchema = z.object({
     email: z.string().email({
         message: "Invalid email format."
     }),
     password: z.string().min(8, {
-      message: "Password must be at least 8 characters.",
+        message: "Password must be at least 8 characters.",
     }),
     confirmPassword: z.string().min(8, {
-      message: "Password must be at least 8 characters.",
+        message: "Password must be at least 8 characters.",
+    }),
+    role: z.string().min(1, {
+        message: "Please select a role.",
     }),
 }).refine(data => data.password === data.confirmPassword, {
     message: "Passwords must match.",
@@ -29,6 +34,7 @@ const Register: React.FC = () => {
             email: "",
             password: "",
             confirmPassword: "",
+            role: "",
         },
     });
         
@@ -87,6 +93,27 @@ const Register: React.FC = () => {
                                             <Input type="password" placeholder="Confirm password" {...field} />
                                         </FormControl>
                                         <FormMessage errors={form.formState.errors} name="confirmPassword" />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="role"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Who are you?" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="Customer">I am looking for trainings and jobs</SelectItem>
+                                                <SelectItem value="NGO">I am a foundation that provides trainings</SelectItem>
+                                                <SelectItem value="Business">I am a business that needs employees</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
                                     </FormItem>
                                 )}
                             />
