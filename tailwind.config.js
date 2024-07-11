@@ -131,7 +131,10 @@ module.exports = {
         '9/12': '75%',
         '10/12': '83.333333%',
         '11/12': '91.666667%',
-      }
+      },
+      fontFamily: {
+        figtree: ['Figtree'],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
