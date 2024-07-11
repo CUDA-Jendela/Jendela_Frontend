@@ -2,6 +2,7 @@ import { Outlet, RouteObject, createBrowserRouter } from "react-router-dom";
 import { Home } from "@/pages";
 import { Navbar, Footer } from "@/components";
 import Login from "@/pages/Login";
+import Register from "@/pages/Register";
 
 const MainLayout = () => {
     return (
@@ -33,12 +34,16 @@ const routes: RouteObject[] = [
         ],
     },
     {
-        path: "/login",
+        path: "/",
         element: <AuthLayout />,
         children: [
             {
                 path: "/login",
                 element: <Login />,
+            },
+            {
+                path: "/register",
+                element: <Register />,
             }
         ],
     },
