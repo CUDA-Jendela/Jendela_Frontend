@@ -17,6 +17,15 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(67deg, rgba(74,124,89,1) 55%, rgba(185,163,101,0.3927696078431373) 90%), url("/src/assets/images/hero.jpg")',
+      },
+      backgroundSize: {
+        'full': '100% 100%',
+      },
+      backgroundRepeat: {
+        'no-repeat': 'no-repeat',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
