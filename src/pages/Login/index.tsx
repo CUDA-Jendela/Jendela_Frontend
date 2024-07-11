@@ -19,15 +19,15 @@ const Login: React.FC = () => {
             <div className="w-[45%] h-screen bg-white content-center p-[10%]">
                 <div className="flex flex-col w-full gap-3">
                     <p className="font-figtree text-4xl font-semibold">Welcome back!</p>
-                    <p className="font-figtree text-sm font-normal">Login to your account</p>
+                    <p className="font-figtree text-base font-normal">Login to your account</p>
                     <div className="flex flex-col mb-4 mt-4 gap-3">
                         <Input type="email" placeholder="Email"></Input>
                         <Input type="password" placeholder="Password"></Input>
                     </div>
                     <Button className="color-green-50 text-white rounded-full">Login</Button>
                     <div className="flex flex-row gap-1 justify-center">
-                        <p className="text-xs">Not registered yet?</p>
-                        <a className="text-xs text-green-50" href="/register">Create an account</a>
+                        <p className="text-sm">Not registered yet?</p>
+                        <a className="text-sm text-green-50" href="/register">Create an account</a>
                     </div>
                 </div>
             </div>
