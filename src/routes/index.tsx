@@ -56,7 +56,7 @@ const routes: RouteObject[] = [
             },
             {
                 path: "/setup-business",
-                element: <SetupProfileBusiness />,
+                element: <SetupProfileBusiness/>,
             },
         ],
     },

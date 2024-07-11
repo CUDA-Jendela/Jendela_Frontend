@@ -20,7 +20,7 @@ const SetupProfileCustomer: React.FC = () => {
     }
 
     return (
-        <main className="flex flex-row w-full min-h-screen p-10 bg-green-50 justify-center">
+        <main className="flex flex-row w-full min-h-screen p-10 bg-green-yellow-gradient justify-center">
             <div className="flex flex-col w-[45%] h-fit px-20 py-12 bg-white rounded-lg gap-3">
                 <p className="font-figtree text-4xl font-semibold">Setup your profile</p>
                 <p className="font-figtree text-base font-normal mb-4">First things first! Tell us about yourself.</p>
