@@ -45,7 +45,7 @@ const skills = [
         id: "10",
         label: "Computer Skills",
     },
-] as const;
+];
 
 const SkillAssessment: React.FC = () => {
     const form = useForm({
