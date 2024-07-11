@@ -1,10 +1,11 @@
 import React from "react";
 
 import { Button } from "@/components/ui/button";
-import { featureCardData } from "@/data";
+import { FAQItem, featureCardData } from "@/data";
 
 import logoWhite from "@/assets/logo_white.png";
 import { Card } from "@/components";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const Home: React.FC = () => {
     return (
@@ -31,7 +32,7 @@ const Home: React.FC = () => {
             <div className="w-full pt-5 pb-20">
                 {/* Opening */}
                 <div className="w-full flex flex-col space-y-3 justify-center items-center text-center">
-                    <h1 className="text-5xl font-bold text-primary">Why Jendela?</h1>
+                    <h1 className="text-4xl font-bold text-primary">Why Jendela?</h1>
                     <h3 className="text-xl">Unlock potential, transform lives, and build a brighter future</h3>
                 </div>
 
@@ -41,6 +42,20 @@ const Home: React.FC = () => {
                         <Card key={index} {...card} />
                     ))}
                 </div>
+            </div>
+
+            {/* FAQ */}
+            <div className="flex flex-col items-center justify-center text-center w-full py-6 md:px-20 px-10 md:mb-10 mb-6">
+                <div className="font-bold text-4xl text-primary pb-3">Frequently Asked Question</div>
+                <h3 className="text-xl">Find answers to your burning questions.</h3>
+                <Accordion type="single" collapsible className="w-full lg:px-32 mt-10">
+                    {FAQItem.map(({ question, answer }, index) => (
+                        <AccordionItem value={index.toString()} key={index} className="mb-5 md:px-8 px-6 card-glow rounded-xl shadow-lg">
+                            <AccordionTrigger className="font-semibold text-left text-lg text-primary">{question}</AccordionTrigger>
+                            <AccordionContent className="text-left text-base">{answer}</AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
             </div>
         </main>
     );
