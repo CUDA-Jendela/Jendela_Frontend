@@ -15,7 +15,7 @@ const SetupProfileCustomer: React.FC = () => {
         },
     });
         
-    function onSubmit(values: Record<string, any>) {
+    function onSubmit(values: Record<string, unknown>) {
         console.log(values);
     }
 
