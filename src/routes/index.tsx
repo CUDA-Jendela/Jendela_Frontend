@@ -4,6 +4,7 @@ import { Navbar, Footer } from "@/components";
 import SetupProfileCustomer from "@/pages/SetupProfileCustomer";
 import SetupProfileNGO from "@/pages/SetupProfileNGO";
 import SetupProfileBusiness from "@/pages/SetupProfileBusiness";
+import SkillAssessment from "@/pages/SkillAssessment";
 
 const MainLayout = () => {
     return (
@@ -57,6 +58,10 @@ const routes: RouteObject[] = [
             {
                 path: "/setup-business",
                 element: <SetupProfileBusiness/>,
+            },
+            {
+                path: "/skill-assessment",
+                element: <SkillAssessment/>,
             },
         ],
     },
