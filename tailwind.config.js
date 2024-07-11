@@ -19,6 +19,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'custom-gradient': 'linear-gradient(67deg, rgba(74,124,89,1) 55%, rgba(185,163,101,0.3927696078431373) 90%), url("/src/assets/images/hero.jpg")',
+        'green-gradient': 'linear-gradient(30deg, rgba(74,124,89,1) 15%, rgba(185,163,101,0.3927696078431373) 90%)',
       },
       backgroundSize: {
         'full': '100% 100%',
