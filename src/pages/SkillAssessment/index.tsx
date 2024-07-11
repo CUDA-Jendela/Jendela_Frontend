@@ -90,7 +90,7 @@ const SkillAssessment: React.FC = () => {
                                                         <FormControl>
                                                             <Checkbox
                                                                 checked={isChecked}
-                                                                onCheckedChange={(checked) => {
+                                                                onCheckedChange={(checked: any) => {
                                                                     const newValue = checked
                                                                         ? [...field.value, skill.id]
                                                                         : field.value.filter(

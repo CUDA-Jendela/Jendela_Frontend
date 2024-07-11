@@ -1,8 +1,15 @@
 import { Outlet, RouteObject, createBrowserRouter } from "react-router-dom";
-import { Home, Login, Register, SetupProfileCustomer, SetupProfileNGO, SetupProfileBusiness } from "@/pages";
+import { 
+    Home, 
+    Login, 
+    Register, 
+    SetupProfileCustomer, 
+    SetupProfileNGO, 
+    SetupProfileBusiness, 
+    SkillAssessment 
+} from "@/pages";
 import { ProtectedRoute, Navbar, Footer } from "@/components";
 import { AuthProvider } from "@/contexts/AuthContext";
-import SkillAssessment from "@/pages/SkillAssessment";
 
 const MainLayout = () => {
     return (
@@ -50,6 +57,14 @@ const routes: RouteObject[] = [
                 element: (
                     <ProtectedRoute roles={["customer"]}>
                         <SetupProfileCustomer />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "/setup-cust-skill",
+                element: (
+                    <ProtectedRoute roles={["customer"]}>
+                        <SkillAssessment />
                     </ProtectedRoute>
                 ),
             },
