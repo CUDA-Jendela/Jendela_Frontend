@@ -1,8 +1,6 @@
 import { Outlet, RouteObject, createBrowserRouter } from "react-router-dom";
-import { Home } from "@/pages";
+import { Home, Login, Register } from "@/pages";
 import { Navbar, Footer } from "@/components";
-import Login from "@/pages/Login";
-import Register from "@/pages/Register";
 
 const MainLayout = () => {
     return (
