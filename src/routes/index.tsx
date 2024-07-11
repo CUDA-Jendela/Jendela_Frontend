@@ -1,6 +1,9 @@
 import { Outlet, RouteObject, createBrowserRouter } from "react-router-dom";
 import { Home, Login, Register } from "@/pages";
 import { Navbar, Footer } from "@/components";
+import SetupProfileCustomer from "@/pages/SetupProfileCustomer";
+import SetupProfileNGO from "@/pages/SetupProfileNGO";
+import SetupProfileBusiness from "@/pages/SetupProfileBusiness";
 
 const MainLayout = () => {
     return (
@@ -42,7 +45,19 @@ const routes: RouteObject[] = [
             {
                 path: "/register",
                 element: <Register />,
-            }
+            },
+            {
+                path: "/setup-cust",
+                element: <SetupProfileCustomer />,
+            },
+            {
+                path: "/setup-ngo",
+                element: <SetupProfileNGO />,
+            },
+            {
+                path: "/setup-business",
+                element: <SetupProfileBusiness />,
+            },
         ],
     },
 ];
