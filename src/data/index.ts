@@ -5,7 +5,7 @@ import feature4 from "@/assets/images/feature4.jpg";
 import feature5 from "@/assets/images/feature5.jpg";
 import feature6 from "@/assets/images/feature6.jpg";
 
-import logoPlaceholder from "@/assets/images/logo_placeholder.png";
+// import logoPlaceholder from "@/assets/images/logo_placeholder.png";
 // import profilePlaceholder from "@/assets/images/profile_placeholder.png";
 
 export const featureCardData = [
@@ -134,8 +134,8 @@ export const Courses = [
 export const businesses = [
   {
     id: "1",
-    logo: logoPlaceholder,
-    name: "CUDA Canteen",
+    logo: "https://cdn.worldvectorlogo.com/logos/mcdonalds-2.svg", // McDonald's Logo
+    name: "McDonald's",
     industry: "Food and Beverage",
     address: "Ganesha Street 10",
     city: "Bandung",
@@ -144,38 +144,38 @@ export const businesses = [
   },
   {
     id: "2",
-    logo: logoPlaceholder,
-    name: "Flower Bouquet by CUDA Projects",
-    industry: "Floral Design & Gifts",
+    logo: "https://cdn.worldvectorlogo.com/logos/google-2015-4.svg", // Google Logo
+    name: "Google Indonesia",
+    industry: "Technology",
     address: "Thamrin Street 5",
     city: "Jakarta",
     phone: "081987654321",
-    description: "Crafting exquisite floral arrangements for all occasions, from weddings to corporate events. We add a touch of nature's elegance to your special moments.",
+    description: "Empowering people through innovative technology solutions and creating opportunities for individuals and businesses to thrive in the digital age.",
   },
   {
     id: "3",
-    logo: logoPlaceholder,
-    name: "GH Japanese Restaurant",
-    industry: "Japanese Cuisine",
+    logo: "https://logos-world.net/wp-content/uploads/2020/04/Toyota-Logo.png", // Toyota Logo
+    name: "Toyota Astra Motor",
+    industry: "Automotive",
     address: "Sudirman Street 22",
     city: "Tangerang",
     phone: "082345678901",
-    description: "Experience authentic Japanese flavors in a refined ambiance. Our menu boasts sushi, sashimi, ramen, and more, all made with the freshest ingredients.",
+    description: "Providing quality vehicles and exceptional service to customers across Indonesia. We offer a wide range of models to suit every need and lifestyle.",
   },
   {
     id: "4",
-    logo: logoPlaceholder,
-    name: "Garuda Constructions",
-    industry: "Construction & Engineering",
+    logo: "https://cdn.worldvectorlogo.com/logos/indomie-1.svg", // Indomie Logo
+    name: "Indofood",
+    industry: "Food & Consumer Goods",
     address: "Merdeka Street 15",
     city: "Bekasi",
     phone: "083456789012",
-    description: "Your trusted partner for quality construction projects. We specialize in residential, commercial, and infrastructure development, delivering excellence and innovation.",
+    description: "A leading provider of food and consumer products in Indonesia, known for our iconic brands like Indomie. We nourish lives with delicious and accessible products.",
   },
   {
     id: "5",
-    logo: logoPlaceholder,
-    name: "Coffee Cafe",
+    logo: "https://logos-world.net/wp-content/uploads/2020/11/Starbucks-Logo.png", // Starbucks Logo
+    name: "Starbucks Indonesia",
     industry: "Specialty Coffee & Pastries",
     address: "Dago Street 8",
     city: "Bandung",
@@ -184,53 +184,53 @@ export const businesses = [
   },
   {
     id: "6",
-    logo: logoPlaceholder,
-    name: "Batik Nusantara",
-    industry: "Fashion & Retail",
+    logo: "https://cdn.worldvectorlogo.com/logos/bank-mandiri-logo-2016.svg", // Bank Mandiri Logo
+    name: "Bank Mandiri",
+    industry: "Banking & Finance",
     address: "Malioboro Street 12",
     city: "Yogyakarta",
     phone: "085678901234",
-    description: "Preserving Indonesia's rich heritage through exquisite batik creations. Our clothing and accessories showcase traditional craftsmanship with a modern touch.",
+    description: "Empowering individuals and businesses with a comprehensive range of financial services, from savings and loans to investment and insurance.",
   },
   {
     id: "7",
-    logo: logoPlaceholder,
-    name: "Tech Savvy Solutions",
-    industry: "IT Services & Consulting",
+    logo: "https://cdn.worldvectorlogo.com/logos/telkomsel-2.svg", // Telkomsel Logo
+    name: "Telkomsel",
+    industry: "Telecommunications",
     address: "Tunjungan Plaza 5th Floor",
     city: "Surabaya",
     phone: "086789012345",
-    description: "Empowering businesses with cutting-edge technology solutions. We offer IT consulting, software development, and cybersecurity services tailored to your needs.",
+    description: "Connecting people across Indonesia with reliable mobile network services. We offer a wide range of products and services to meet your communication needs.",
   },
   {
     id: "8",
-    logo: logoPlaceholder,
-    name: "Green Thumb Landscaping",
-    industry: "Landscaping & Gardening",
+    logo: "https://1000logos.net/wp-content/uploads/2017/08/Garuda-Indonesia-Logo.png", // Garuda Indonesia Logo
+    name: "Garuda Indonesia",
+    industry: "Airline",
     address: "Imam Bonjol Street 33",
     city: "Denpasar",
     phone: "087890123456",
-    description: "Transforming outdoor spaces into serene oases. Our expert landscapers design and maintain beautiful gardens that enhance the aesthetics and functionality of your property.",
+    description: "Connecting Indonesia and the world with a warm and hospitable flying experience. We offer a wide range of domestic and international flights.",
   },
   {
     id: "9",
-    logo: logoPlaceholder,
-    name: "Fresh Catch Seafood Market",
-    industry: "Food & Retail",
+    logo: "https://cdn.worldvectorlogo.com/logos/unilever-2.svg", // Unilever Logo
+    name: "Unilever Indonesia",
+    industry: "Consumer Goods",
     address: "Pantai Indah Kapuk Boulevard",
     city: "Jakarta",
     phone: "088901234567",
-    description: "Your one-stop shop for the freshest seafood in town. We offer a wide variety of fish, shellfish, and other delicacies, sourced directly from local fishermen.",
+    description: "Enhancing the lives of Indonesians with our diverse range of consumer goods brands, from personal care and home care to food and beverages.",
   },
   {
     id: "10",
-    logo: logoPlaceholder,
-    name: "Auto Masters",
-    industry: "Automotive Repair & Maintenance",
+    logo: "https://cdn.worldvectorlogo.com/logos/pertamina-2.svg", // Pertamina Logo
+    name: "Pertamina",
+    industry: "Energy",
     address: "Jalan Asia Afrika 115",
     city: "Bandung",
     phone: "089012345678",
-    description: "Keeping your vehicle running smoothly. Our experienced mechanics provide reliable and affordable repair and maintenance services for all makes and models.",
+    description: "Powering Indonesia's growth with reliable energy solutions. We are committed to providing quality fuel, lubricants, and other energy products.",
   },
 ];
 
