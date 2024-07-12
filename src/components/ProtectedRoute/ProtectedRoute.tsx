@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import useAuth from "../../contexts/AuthContext";
+import useAuth from "@/contexts/AuthContext";
 import { ProtectedRouteProps } from "./ProtectedRoute.props";
 
 const ProtectedRoute = (props: ProtectedRouteProps) => {
@@ -17,7 +17,7 @@ const ProtectedRoute = (props: ProtectedRouteProps) => {
                 return;
             }
 
-            if (!roles.includes(role as "admin" | "customer" | "ngo" | "business")) {
+            if (!roles.includes(role as "customer" | "ngo" | "business")) {
                 navigate("/");
                 return;
             }
