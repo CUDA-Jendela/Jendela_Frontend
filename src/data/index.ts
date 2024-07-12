@@ -134,7 +134,7 @@ export const Courses = [
 export const businesses = [
   {
     id: "1",
-    logo: "https://cdn.worldvectorlogo.com/logos/mcdonalds-2.svg", // McDonald's Logo
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png", // McDonald's Logo (Wikimedia)
     name: "McDonald's",
     industry: "Food and Beverage",
     address: "Ganesha Street 10",
@@ -144,7 +144,7 @@ export const businesses = [
   },
   {
     id: "2",
-    logo: "https://cdn.worldvectorlogo.com/logos/google-2015-4.svg", // Google Logo
+    logo: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png", // Google Logo
     name: "Google Indonesia",
     industry: "Technology",
     address: "Thamrin Street 5",
@@ -164,17 +164,17 @@ export const businesses = [
   },
   {
     id: "4",
-    logo: "https://cdn.worldvectorlogo.com/logos/indomie-1.svg", // Indomie Logo
-    name: "Indofood",
-    industry: "Food & Consumer Goods",
-    address: "Merdeka Street 15",
-    city: "Bekasi",
-    phone: "083456789012",
-    description: "A leading provider of food and consumer products in Indonesia, known for our iconic brands like Indomie. We nourish lives with delicious and accessible products.",
+    logo: "https://logos-download.com/wp-content/uploads/2020/06/Gojek_Logo.png", // Gojek Logo
+    name: "Gojek",
+    industry: "Transportation & Logistics",
+    address: "Jalan Jenderal Sudirman Kav. 52-53",
+    city: "Jakarta",
+    phone: "02150849000",
+    description: "Indonesia's leading super app, offering a wide range of services including transportation, food delivery, payments, and more.",
   },
   {
     id: "5",
-    logo: "https://logos-world.net/wp-content/uploads/2020/11/Starbucks-Logo.png", // Starbucks Logo
+    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png", // Starbucks Logo
     name: "Starbucks Indonesia",
     industry: "Specialty Coffee & Pastries",
     address: "Dago Street 8",
@@ -184,53 +184,53 @@ export const businesses = [
   },
   {
     id: "6",
-    logo: "https://cdn.worldvectorlogo.com/logos/bank-mandiri-logo-2016.svg", // Bank Mandiri Logo
-    name: "Bank Mandiri",
-    industry: "Banking & Finance",
-    address: "Malioboro Street 12",
-    city: "Yogyakarta",
-    phone: "085678901234",
-    description: "Empowering individuals and businesses with a comprehensive range of financial services, from savings and loans to investment and insurance.",
+    logo: "https://tse3.mm.bing.net/th?id=OIP.V5nPzSzdfeGDTUHqZ74dhgHaFs&pid=Api&P=0&h=220", // Telkom Indonesia Logo
+    name: "Telkom Indonesia",
+    industry: "Telecommunications",
+    address: "Jalan Gatot Subroto Kav. 52",
+    city: "Jakarta",
+    phone: "0215251411",
+    description: "A leading telecommunications company in Indonesia, providing a wide range of services including internet, mobile, and fixed-line communications.",
   },
   {
     id: "7",
-    logo: "https://cdn.worldvectorlogo.com/logos/telkomsel-2.svg", // Telkomsel Logo
-    name: "Telkomsel",
-    industry: "Telecommunications",
-    address: "Tunjungan Plaza 5th Floor",
-    city: "Surabaya",
-    phone: "086789012345",
-    description: "Connecting people across Indonesia with reliable mobile network services. We offer a wide range of products and services to meet your communication needs.",
+    logo: "https://tse3.mm.bing.net/th?id=OIP.ZE9KPymKvIwWzQhIPz71QwHaFj&pid=Api&P=0&h=220", // Tokopedia Logo
+    name: "Tokopedia",
+    industry: "E-commerce",
+    address: "Jalan Satrio Kav. 11",
+    city: "Jakarta",
+    phone: "02180647333",
+    description: "Indonesia's largest online marketplace, connecting buyers and sellers across the country. We offer a wide range of products and services, from electronics to fashion.",
   },
   {
     id: "8",
-    logo: "https://1000logos.net/wp-content/uploads/2017/08/Garuda-Indonesia-Logo.png", // Garuda Indonesia Logo
-    name: "Garuda Indonesia",
-    industry: "Airline",
-    address: "Imam Bonjol Street 33",
-    city: "Denpasar",
-    phone: "087890123456",
-    description: "Connecting Indonesia and the world with a warm and hospitable flying experience. We offer a wide range of domestic and international flights.",
+    logo: "https://png.pngtree.com/png-clipart/20221224/original/pngtree-bca-bank-logo-png-image_8801637.png", // BCA Logo
+    name: "Bank Central Asia (BCA)",
+    industry: "Banking & Finance",
+    address: "Jalan MH Thamrin No. 1",
+    city: "Jakarta",
+    phone: "0212345678",
+    description: "One of Indonesia's largest private banks, offering a full range of banking services for individuals and businesses.",
   },
   {
     id: "9",
-    logo: "https://cdn.worldvectorlogo.com/logos/unilever-2.svg", // Unilever Logo
-    name: "Unilever Indonesia",
-    industry: "Consumer Goods",
-    address: "Pantai Indah Kapuk Boulevard",
+    logo: "https://tse3.mm.bing.net/th?id=OIP.w3ACXS1Wyq-tScg6r7CLJAHaEz&pid=Api&P=0&h=220", // Astra International Logo
+    name: "Astra International",
+    industry: "Automotive, Financial Services, Infrastructure",
+    address: "Jalan Jenderal Sudirman Kav. 5-6",
     city: "Jakarta",
-    phone: "088901234567",
-    description: "Enhancing the lives of Indonesians with our diverse range of consumer goods brands, from personal care and home care to food and beverages.",
+    phone: "02150843000",
+    description: "A leading conglomerate in Indonesia, with diverse businesses in automotive, financial services, heavy equipment, agribusiness, infrastructure, logistics, and information technology.",
   },
   {
     id: "10",
-    logo: "https://cdn.worldvectorlogo.com/logos/pertamina-2.svg", // Pertamina Logo
-    name: "Pertamina",
-    industry: "Energy",
-    address: "Jalan Asia Afrika 115",
-    city: "Bandung",
-    phone: "089012345678",
-    description: "Powering Indonesia's growth with reliable energy solutions. We are committed to providing quality fuel, lubricants, and other energy products.",
+    logo: "https://tse3.mm.bing.net/th?id=OIP.HB-m1tKl0OhwjE9B0xvpCAHaFG&pid=Api&P=0&h=220", // Traveloka Logo
+    name: "Traveloka",
+    industry: "Travel & Tourism",
+    address: "Jalan Satrio Kav. 7",
+    city: "Jakarta",
+    phone: "02129707299",
+    description: "A leading online travel agency in Southeast Asia, offering flight booking, hotel reservations, and other travel services.",
   },
 ];
 
