@@ -5,8 +5,11 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { CourseApi, SkillApi } from "@/api";
 import { CourseCardProps, CoursesResponse, SkillResponse } from "@/types";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
+import useAuth from "@/contexts/AuthContext";
 
 const Course: React.FC = () => {
+    const { role } = useAuth();
     const [search, setSearch] = useState("");
     const [locationFilter, setLocationFilter] = useState("");
     const [skillsFilter, setSkillsFilter] = useState("");
@@ -49,8 +52,21 @@ const Course: React.FC = () => {
     return (
         <main className="flex flex-col bg-white w-full min-h-screen">
             <div className="px-16 py-12">
-                <h1 className="text-4xl font-bold text-primary">Explore Courses</h1>
-                <p className="text-xl">Discover the perfect course to unlock your potential.</p>
+                <div className="flex justify-between">
+                    <div className="flex flex-col">
+                        <h1 className="text-4xl font-bold text-primary">Explore Courses</h1>
+                        <p className="text-xl">Discover the perfect course to unlock your potential.</p>
+                    </div>
+                    { role == "ngo" && (<div className="">
+                        <Link to="/add-course">
+                            <button
+                                className="w-fit border rounded-3xl text-lg font-bold p-2 px-6 bg-primary border-primary border-2 text-white hover:bg-primary-dark hover:text-white transition-transform duration-300 transform hover:scale-105"
+                            >
+                                Add Course
+                            </button>
+                        </Link>
+                    </div>) }
+                </div>
 
                 <div className="mt-6 flex justify-between gap-4">
                     <div className="relative w-1/3">
