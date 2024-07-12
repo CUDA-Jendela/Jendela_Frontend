@@ -13,6 +13,7 @@ import { ProtectedRoute, Navbar, Footer } from "@/components";
 import { AuthProvider } from "@/contexts/AuthContext";
 import AddCourse from "@/pages/AddCourse";
 import ExploreBusiness from "@/pages/Business";
+import ChatbotFloatingButton from "@/components/ChatbotFloatingButton";
 
 const MainLayout = () => {
     return (
@@ -20,6 +21,7 @@ const MainLayout = () => {
             <Navbar />
             <Outlet />
             <Footer />
+            <ChatbotFloatingButton />
         </AuthProvider>
     );
 };

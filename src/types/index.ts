@@ -77,3 +77,8 @@ interface userData {
   isVerified: boolean;
   email: string;
 }
+
+export interface Message {
+  type: "user" | "bot";
+  content: string;
+}
