@@ -12,9 +12,10 @@
 <h1 align="center">Jendela Frontend Website</h1>
 <div align="center">
 
-TODO : GANTI BANNER
+<img src="./img/banner.png" alt=""/>
 
 </div>
+<br>
 Your gateway to new beginnings: Jendela's web application offers an engaging and user-friendly interface, presenting real-time opportunities, personalized training recommendations, and a supportive community. It's your digital guide, empowering ex-convicts to rebuild their lives and seize fresh career prospects, one click at a time.
 
 ## 👨🏻‍💻 &nbsp;Technology Stack
@@ -40,7 +41,7 @@ Your gateway to new beginnings: Jendela's web application offers an engaging and
 
 <a href="https://ui.shadcn.com/">
 <kbd>
-<img src="./img/logo/shadcnui.png" height="60" />
+<img src="./img/logo/ShadcnUI.png" height="60" />
 </kbd>
 </a>
 </div>
