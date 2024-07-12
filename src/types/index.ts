@@ -181,3 +181,13 @@ export interface LocationResponse {
   message: string;
   data: string[];
 }
+
+// CourseAdd Request
+export interface CourseAddRequest {
+  name: string;
+  description: string;
+  skills: string[];
+  quota: number;
+  startDate: string;
+  endDate: string;
+}

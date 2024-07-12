@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { CoursesResponse, LocationResponse } from "@/types";
+import { CourseAddRequest, CoursesResponse, LocationResponse } from "@/types";
 import { API_URL_LOCAL } from "@/constant";
 
 class CourseApi {
@@ -33,6 +33,19 @@ class CourseApi {
                 }
             });
 
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    static async add(payload: CourseAddRequest, token: string): Promise<any> {
+        try {
+            const response = await this.axios.post<any>("/", payload, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
             return response.data;
         } catch (error) {
             throw error;
