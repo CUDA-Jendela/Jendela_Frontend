@@ -45,7 +45,7 @@ const SetupProfileNGO: React.FC = () => {
         setUpdate(true);
 
         // Submit the response
-        await ProfileApi.customer2(payload, jwtToken as string)
+        await ProfileApi.ngo(payload, jwtToken as string)
         .then(() => {
             toast.success("Registration successful!");
             // Insert to cookies
