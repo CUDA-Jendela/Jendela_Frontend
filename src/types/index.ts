@@ -39,7 +39,7 @@ export interface JwtPayload {
   id: string;
   email: string;
   role: "customer" | "ngo" | "business";
-  isVerified: boolean;
+  isVerified: string;
   iat: number;
   exp: number;
 }
@@ -82,7 +82,7 @@ interface userData {
   name: string;
   password: string;
   role: string;
-  isVerified: boolean;
+  isVerified: string;
   email: string;
 }
 
@@ -106,4 +106,16 @@ export interface CustomerResponse {
 export interface Message {
   type: "user" | "bot";
   content: string;
+}
+
+// Skill Response
+export interface SkillResponse {
+  success: boolean;
+  message: string;
+  data: skillData[];
+}
+
+interface skillData {
+  id: string;
+  name: string;
 }

@@ -88,9 +88,7 @@ const routes: RouteObject[] = [
             {
                 path: "/setup-cust-skill",
                 element: (
-                    <ProtectedRoute roles={["customer"]}>
-                        <SkillAssessment />
-                    </ProtectedRoute>
+                    <SkillAssessment />
                 ),
             },
             {
