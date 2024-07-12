@@ -9,12 +9,12 @@ export interface CardProps {
 // Card Course Props
 export interface CourseCardProps {
   id: string;
-  title: string;
+  name: string;
   ngoName: string;
-  location: string;
+  ngoCity: string;
   startDate: string;
   endDate: string;
-  quota: string;
+  quota: number;
   skills: string[];
   score: string;
 }
@@ -166,4 +166,29 @@ export interface SendChatRequest {
 export interface SendChatResponse {
   success: boolean;
   message: string;
+}
+
+
+// Courses Respone
+export interface CoursesResponse {
+  success: boolean;
+  message: string;
+  data: CourseCardProps[];
+}
+
+// Courses Respone
+export interface LocationResponse {
+  success: boolean;
+  message: string;
+  data: string[];
+}
+
+// CourseAdd Request
+export interface CourseAddRequest {
+  name: string;
+  description: string;
+  skills: string[];
+  quota: number;
+  startDate: string;
+  endDate: string;
 }

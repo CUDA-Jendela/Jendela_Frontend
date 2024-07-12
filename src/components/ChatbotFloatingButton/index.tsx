@@ -69,7 +69,7 @@ const ChatbotFloatingButton: React.FC = () => {
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <Button className="fixed bottom-0 right-0 size-20 p-4 m-8 bg-secondary hover:bg-yellow-60 rounded-full shadow-lg">
+                <Button className="fixed bottom-0 right-0 z-10 size-20 p-4 m-8 bg-secondary hover:bg-yellow-60 rounded-full shadow-lg">
                     <img src={chatbotIcon} />
                 </Button>
             </SheetTrigger>

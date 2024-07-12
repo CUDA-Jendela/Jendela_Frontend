@@ -5,7 +5,7 @@ import { FaMapMarkerAlt, FaCalendarAlt, FaUsers } from "react-icons/fa";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
-const Card: React.FC<CourseCardProps> = ({ id, title, ngoName, location, startDate, endDate, quota, skills }) => {
+const Card: React.FC<CourseCardProps> = ({ id, name, ngoName, ngoCity, startDate, endDate, quota, skills }) => {
     const formatDate = (dateString: string) => {
         return format(new Date(dateString), "dd MMM yyyy");
     };
@@ -19,11 +19,11 @@ const Card: React.FC<CourseCardProps> = ({ id, title, ngoName, location, startDa
                 <div className="w-[100px] bg-green-yellow-gradient">
                 </div>
                 <div className="max-w-[75%] p-5">
-                    <h2 className="text-2xl font-bold">{title}</h2>
+                    <h2 className="text-2xl font-bold">{name}</h2>
                     <p className="text-base pb-3 text-gray-500">{ngoName}</p>
                     <div className="flex items-center text-base">
                         <FaMapMarkerAlt className="mr-2 text-gray-500" />
-                        {location}
+                        {ngoCity}
                     </div>
                     <div className="flex items-center text-base">
                         <FaCalendarAlt className="mr-2 text-gray-500" />

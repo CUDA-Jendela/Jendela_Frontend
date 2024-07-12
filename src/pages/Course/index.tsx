@@ -1,22 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import CourseCard from "@/components/CourseCard";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Courses } from "@/data";
+import { CourseApi, SkillApi } from "@/api";
+import { CourseCardProps, CoursesResponse, SkillResponse } from "@/types";
+import Cookies from "js-cookie";
 
 const Course: React.FC = () => {
     const [search, setSearch] = useState("");
     const [locationFilter, setLocationFilter] = useState("");
     const [skillsFilter, setSkillsFilter] = useState("");
+    const [courses, setCourses] = useState<CourseCardProps[]>([]);
+    const [locations, setLocations] = useState<string[]>([]);
+    const [skills, setSkills] = useState<string[]>([]);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value);
-    const handleLocationFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => setLocationFilter(e.target.value);
-    const handleSkillsFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => setSkillsFilter(e.target.value);
+    const handleLocationFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => setLocationFilter(e.target.value);
+    const handleSkillsFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => setSkillsFilter(e.target.value);
 
-    const filteredCourses = Courses.filter(course =>
-        course.title.toLowerCase().includes(search.toLowerCase()) &&
-        course.location.toLowerCase().includes(locationFilter.toLowerCase()) &&
-        course.skills.some(skill => skill.toLowerCase().includes(skillsFilter.toLowerCase()))
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const jwtToken = Cookies.get("j-token");
+                const courseData: CoursesResponse = await CourseApi.getAll(jwtToken as string);
+                setCourses(courseData.data);
+                
+                // Assuming CourseApi provides methods to fetch locations and skills
+                const locationData = await CourseApi.getLocation(jwtToken as string);
+                setLocations(locationData.data);
+                
+                const skillsResponse: SkillResponse = await SkillApi.all();
+                const skillNames = skillsResponse.data.map(skill => skill.name);
+                setSkills(skillNames);
+            } catch (error) {
+                console.error('Failed to fetch data:', error);
+            }
+        };
+
+        fetchCourses();
+    }, []);
+
+    const filteredCourses = courses.filter(course =>
+        course.name.toLowerCase().includes(search.toLowerCase()) &&
+        (locationFilter === "" || course.ngoCity === locationFilter) &&
+        (skillsFilter === "" || course.skills.includes(skillsFilter))
     );
 
     return (
@@ -36,18 +63,30 @@ const Course: React.FC = () => {
                         />
                     </div>
                     <div className="flex space-x-4">
-                        <Input
-                            placeholder="Filter by location"
+                        <select
                             value={locationFilter}
                             onChange={handleLocationFilterChange}
                             className="border border-gray-300 rounded-md p-2"
-                        />
-                        <Input
-                            placeholder="Filter by skills"
+                        >
+                            <option value="">All Locations</option>
+                            {locations.map((location, index) => (
+                                <option key={index} value={location}>
+                                    {location}
+                                </option>
+                            ))}
+                        </select>
+                        <select
                             value={skillsFilter}
                             onChange={handleSkillsFilterChange}
                             className="border border-gray-300 rounded-md p-2"
-                        />
+                        >
+                            <option value="">All Skills</option>
+                            {skills.map((skill, index) => (
+                                <option key={index} value={skill}>
+                                    {skill}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
 
