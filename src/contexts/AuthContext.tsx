@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                     if (user) {
                         setIsAuthenticated(true);
                         setRole(user.user.role as "customer" | "ngo" | "business");
-                        setUsername(user.user.name);
+                        setUsername(user.user?.name || "user");
                         setToken(token);
                     }
                 } catch (error) {

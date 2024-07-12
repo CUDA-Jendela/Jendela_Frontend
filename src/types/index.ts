@@ -77,3 +77,20 @@ interface userData {
   isVerified: boolean;
   email: string;
 }
+
+// Customer Request
+export interface CustomerRequest {
+  userID: string;
+  name: string;
+  birthDate: string;
+  city: string;
+  phoneNumber: string;
+  profilePicture: string;
+}
+
+// Customer Response
+export interface CustomerResponse {
+  success: boolean;
+  message: string;
+  token?: string;
+}

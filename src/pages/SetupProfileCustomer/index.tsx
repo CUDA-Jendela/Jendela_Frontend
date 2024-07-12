@@ -3,8 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
+import { CustomerRequest, CustomerResponse } from "@/types";
+import useAuth from "@/contexts/AuthContext";
+import { ProfileApi } from "@/api";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
+import { AxiosError } from "axios";
+import { Loader2 } from "lucide-react";
 
 const SetupProfileCustomer: React.FC = () => {
+    const { update, setUpdate } = useAuth();
+
     const form = useForm({
         defaultValues: {
             name: "",
@@ -14,9 +23,46 @@ const SetupProfileCustomer: React.FC = () => {
             profilePicture: "",
         },
     });
-        
-    function onSubmit(values: Record<string, unknown>) {
-        console.log(values);
+
+    async function onSubmit(data: Record<string, unknown>) {
+        try {
+            const birthdate = new Date(data.birthdate as string).toISOString();
+            // const profilePictureFile = data.profilePicture;
+
+            // Upload the profile picture and get the URL
+            // const profilePictureUrl = await handleFileUpload(profilePictureFile);
+            const profilePictureUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Ffortmyersradon.com%2Ffort-myers-beach-fl-radon-mitigation-testing-test-system-gas%2Fdummy-user-img-1%2F&psig=AOvVaw1rgm_sGf2nk28wgXaPF3S7&ust=1720854518156000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKiMm-L4oIcDFQAAAAAdAAAAABAJ"
+
+            const payload: CustomerRequest = {
+                userID: "220",
+                name: data.name as string,
+                birthDate: birthdate,
+                city: data.city as string,
+                phoneNumber: data.phone as string,
+                profilePicture: profilePictureUrl,
+            };
+
+            setUpdate(true);
+
+            // Submit the response
+            const customerResponse: CustomerResponse = await ProfileApi.customer(payload);
+            if (customerResponse.success) {
+                toast.success(customerResponse.message as string);
+                if (customerResponse.token) {
+                    // Insert to cookies
+                    Cookies.set("j-token", customerResponse.token as string);
+
+                    // Re-route based on role
+                    window.location.href = "/setup-cust-skill";
+                }
+            }
+        } catch (error) {
+            console.error("Submit error:", error);
+            const err = error as AxiosError;
+            toast.error((err.response?.data as { message: string })?.message || 'Server is unreachable. Please try again later.');
+        } finally {
+            setUpdate(false);
+        }
     }
 
     return (
@@ -31,11 +77,11 @@ const SetupProfileCustomer: React.FC = () => {
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                <FormLabel>Full name</FormLabel>
-                                <FormControl>
-                                    <Input type="text" {...field} />
-                                </FormControl>
-                                <FormMessage />
+                                    <FormLabel>Full name</FormLabel>
+                                    <FormControl>
+                                        <Input type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                             rules={{ required: "Name is required" }}
@@ -45,11 +91,11 @@ const SetupProfileCustomer: React.FC = () => {
                             name="phone"
                             render={({ field }) => (
                                 <FormItem>
-                                <FormLabel>Phone number</FormLabel>
-                                <FormControl>
-                                    <Input type="text" {...field} />
-                                </FormControl>
-                                <FormMessage />
+                                    <FormLabel>Phone number</FormLabel>
+                                    <FormControl>
+                                        <Input type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                             rules={{ required: "Phone number is required" }}
@@ -59,11 +105,11 @@ const SetupProfileCustomer: React.FC = () => {
                             name="birthdate"
                             render={({ field }) => (
                                 <FormItem>
-                                <FormLabel>Birthdate</FormLabel>
-                                <FormControl>
-                                    <Input type="date" {...field} />
-                                </FormControl>
-                                <FormMessage />
+                                    <FormLabel>Birthdate</FormLabel>
+                                    <FormControl>
+                                        <Input type="date" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                             rules={{ required: "Birthdate is required" }}
@@ -73,11 +119,11 @@ const SetupProfileCustomer: React.FC = () => {
                             name="city"
                             render={({ field }) => (
                                 <FormItem>
-                                <FormLabel>City</FormLabel>
-                                <FormControl>
-                                    <Input type="text" {...field} />
-                                </FormControl>
-                                <FormMessage />
+                                    <FormLabel>City</FormLabel>
+                                    <FormControl>
+                                        <Input type="text" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                             rules={{ required: "City is required" }}
@@ -87,16 +133,25 @@ const SetupProfileCustomer: React.FC = () => {
                             name="profilePicture"
                             render={({ field }) => (
                                 <FormItem>
-                                <FormLabel>Profile picture</FormLabel>
-                                <FormControl>
-                                    <Input type="file" placeholder="Profile picture" {...field} />
-                                </FormControl>
-                                <FormMessage />
+                                    <FormLabel>Profile picture</FormLabel>
+                                    <FormControl>
+                                        <Input type="file" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                             rules={{ required: "Profile picture is required" }}
                         />
-                        <Button type="submit" className="w-full color-green-50 text-white rounded-full">Next</Button>
+                        <Button type="submit" className="w-full color-green-50 text-white rounded-full hover:bg-color-green-60 transition-transform duration-300 transform hover:scale-105" disabled={update}>
+                            {update ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Next
+                                </>
+                            ) : (
+                                'Next'
+                            )}
+                        </Button>
                     </form>
                 </Form>
             </div>
