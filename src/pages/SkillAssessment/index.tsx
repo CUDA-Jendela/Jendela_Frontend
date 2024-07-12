@@ -37,7 +37,7 @@ const SkillAssessment: React.FC = () => {
         // Token
         const jwtToken = Cookies.get("j-token");
         const payload = {
-            skills: data
+            skills: data.skills as string[]
         };
 
         setUpdate(true);
