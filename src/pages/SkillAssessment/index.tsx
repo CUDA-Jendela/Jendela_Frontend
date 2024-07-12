@@ -1,61 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { Checkbox } from "@/components/ui/checkbox";
-
-const skills = [
-    {
-        id: "1",
-        label: "Baking",
-    },
-    {
-        id: "2",
-        label: "Cooking",
-    },
-    {
-        id: "3",
-        label: "Housekeeping",
-    },
-    {
-        id: "4",
-        label: "Plumbing",
-    },
-    {
-        id: "5",
-        label: "Electrical Work",
-    },
-    {
-        id: "6",
-        label: "Knitting",
-    },
-    {
-        id: "7",
-        label: "Gardening",
-    },
-    {
-        id: "8",
-        label: "Driving",
-    },
-    {
-        id: "9",
-        label: "Tailoring",
-    },
-    {
-        id: "10",
-        label: "Computer Skills",
-    },
-];
+import { ProfileApi, SkillApi } from "@/api";
+import { SkillData, SkillResponse } from "@/types";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
+import useAuth from "@/contexts/AuthContext";
+import { Loader2 } from "lucide-react";
 
 const SkillAssessment: React.FC = () => {
+    const [skills, setSkills] = useState<SkillData[]>([]);
+    const { update, setUpdate } = useAuth();
+
+    useEffect(() => {
+        const fetchSkills = async () => {
+            try {
+                const skillData : SkillResponse = await SkillApi.all();
+                setSkills(skillData.data);
+            } catch (error) {
+                console.error('Failed to fetch skills:', error);
+            }
+        };
+
+        fetchSkills();
+    }, []);
+
     const form = useForm({
         defaultValues: {
             skills: [] as string[],
         },
     });
         
-    function onSubmit(values: Record<string, unknown>) {
-        console.log(values);
+    async function onSubmit(data: Record<string, unknown>) {
+        // Token
+        const jwtToken = Cookies.get("j-token");
+        const payload = {
+            skills: data
+        };
+
+        setUpdate(true);
+
+        // Submit the response
+        await ProfileApi.customer2(payload, jwtToken as string)
+        .then(() => {
+            toast.success("Registration successful!");
+            window.location.href = "/";
+        })
+        .catch((error) => {
+            // Optionally handle errors
+            console.error("Registration failed:", error);
+            toast.error("Registration failed. Please try again.");
+        })
+        .finally(() => {
+            setUpdate(false);
+        });
     }
 
     return (
@@ -83,25 +83,20 @@ const SkillAssessment: React.FC = () => {
                                             render={({ field }) => {
                                                 const isChecked = field.value.includes(skill.id);
                                                 return (
-                                                    <FormItem
-                                                        key={skill.id}
-                                                        className="flex flex-row items-start space-x-3 space-y-0"
-                                                    >
+                                                    <FormItem key={skill.id} className="flex flex-row items-start space-x-3 space-y-0">
                                                         <FormControl>
                                                             <Checkbox
                                                                 checked={isChecked}
                                                                 onCheckedChange={(checked: any) => {
                                                                     const newValue = checked
                                                                         ? [...field.value, skill.id]
-                                                                        : field.value.filter(
-                                                                            (value) => value !== skill.id
-                                                                        );
+                                                                        : field.value.filter((value) => value !== skill.id);
                                                                     field.onChange(newValue);
                                                                 }}
                                                             />
                                                         </FormControl>
                                                         <FormLabel className="font-normal">
-                                                            {skill.label}
+                                                            {skill.name}
                                                         </FormLabel>
                                                     </FormItem>
                                                 );
@@ -112,7 +107,16 @@ const SkillAssessment: React.FC = () => {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="w-full color-green-50 text-white rounded-full">Next</Button>
+                        <Button type="submit" className="w-full color-green-50 text-white rounded-full hover:bg-color-green-60 transition-transform duration-300 transform hover:scale-105" disabled={update}>
+                            {update ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Next
+                                </>
+                            ) : (
+                                'Next'
+                            )}
+                        </Button>
                     </form>
                 </Form>
             </div>

@@ -48,6 +48,7 @@ const Login: React.FC = () => {
                 navigate("/setup-business");
             }
         }
+        console.log("Hola ges");
     }, [isAuthenticated, isVerified, role, navigate]);
     
     const form = useForm<z.infer<typeof formSchema>>({
