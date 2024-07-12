@@ -1,11 +1,7 @@
 import axios from "axios";
-import {
-  ChatRequest,
-  ChatResponse,
-  SendChatRequest,
-  SendChatResponse,
-} from "@/types";
+import { ChatResponse, SendChatRequest, SendChatResponse } from "@/types";
 import { API_URL_LOCAL } from "@/constant";
+import Cookies from "js-cookie";
 
 class ChatApi {
   private static axios = axios.create({
@@ -16,8 +12,13 @@ class ChatApi {
   });
 
   static async getChat(): Promise<ChatResponse> {
+    const token = Cookies.get("j-token");
     try {
-      const response = await this.axios.get<ChatResponse>("/chat");
+      const response = await this.axios.get<ChatResponse>("/chat", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       throw error;
@@ -25,10 +26,16 @@ class ChatApi {
   }
 
   static async sendChat(payload: SendChatRequest): Promise<SendChatResponse> {
+    const token = Cookies.get("j-token");
     try {
       const response = await this.axios.post<SendChatResponse>(
         "/chat",
-        payload
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       return response.data;
     } catch (error) {
