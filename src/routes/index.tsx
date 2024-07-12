@@ -15,6 +15,7 @@ import AddCourse from "@/pages/AddCourse";
 import ExploreBusiness from "@/pages/Business";
 import ChatbotFloatingButton from "@/components/ChatbotFloatingButton";
 import HiringList from "@/pages/HiringList";
+import CourseDetail from "@/pages/Course/$id";
 
 const MainLayout = () => {
     return (
@@ -47,6 +48,10 @@ const routes: RouteObject[] = [
             {
                 path: "/course",
                 element: <Course />,
+            },
+            {
+                path: "/course/:id",
+                element: <CourseDetail />,
             },
             {
                 path: "/add-course",

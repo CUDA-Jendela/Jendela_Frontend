@@ -86,6 +86,8 @@ export const Courses = [
     endDate: "2024-03-31T12:00:00Z",
     skills: ["HTML", "CSS", "JavaScript"],
     quota: "20/30",
+    description:
+      "Embark on a journey to become a proficient web developer with our comprehensive Web Development course. Over three months, you will master the fundamentals of HTML, CSS, and JavaScript, the cornerstone technologies of the web. Our hands-on approach ensures that you not only understand the theory but also apply your knowledge through practical projects. By the end of the course, you will be able to create responsive and interactive websites from scratch, equipped with skills that are highly sought after in the tech industry. Join us in New York and take the first step towards a rewarding career in web development.",
   },
   {
     id: "dum2",
@@ -97,6 +99,8 @@ export const Courses = [
     endDate: "2024-04-30T12:00:00Z",
     skills: ["Python", "Machine Learning", "Data Analysis"],
     quota: "15/25",
+    description:
+      "Unlock the power of data with our Data Science course, designed to transform you into a skilled data scientist. Spanning over three months, this course covers the essential tools and techniques of data science, including Python programming, machine learning algorithms, and data analysis methods. Through real-world examples and projects, you will learn how to extract meaningful insights from complex datasets and use them to drive strategic decisions. Whether you're looking to advance your career or start a new one in the rapidly growing field of data science, this course in San Francisco is your gateway to success.",
   },
   {
     id: "dum3",
@@ -108,6 +112,8 @@ export const Courses = [
     endDate: "2024-03-31T12:00:00Z",
     skills: ["HTML", "CSS", "JavaScript"],
     quota: "20/30",
+    description:
+      "Dive into the world of web development with our intensive Web Development course. This program is perfect for beginners who want to gain a solid foundation in HTML, CSS, and JavaScript. Over the course of three months, you will engage in interactive lessons and hands-on projects that teach you how to build functional and visually appealing websites. Our experienced instructors will guide you through the process, ensuring that you develop the confidence and skills needed to tackle real-world web development challenges. Join us in New York and start your journey towards becoming a web development expert.",
   },
   {
     id: "dum4",
@@ -119,6 +125,8 @@ export const Courses = [
     endDate: "2024-04-30T12:00:00Z",
     skills: ["Python", "Machine Learning", "Data Analysis"],
     quota: "15/25",
+    description:
+      "Our Data Science course is meticulously crafted for individuals who aspire to excel in the field of data science. Over three months, you will delve into Python programming, explore machine learning techniques, and master data analysis. The course offers a blend of theoretical knowledge and practical experience, enabling you to handle large datasets and derive actionable insights. Through engaging projects and case studies, you will learn to apply data science methodologies to solve real-world problems. Located in San Francisco, this course is your opportunity to join a community of data enthusiasts and build a future-proof career.",
   },
   // Add more courses here
 ];

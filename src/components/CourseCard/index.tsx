@@ -11,7 +11,7 @@ const Card: React.FC<CourseCardProps> = ({ id, title, ngoName, location, startDa
     };
     
     return (
-        <Link to={`/courseDetail/${id}`}>
+        <Link to={`/course/${id}`}>
             <div
                 key={id}
                 className="max-w-sm h-fit overflow-hidden shadow-lg rounded-2xl flex cursor-pointer transform transition-transform hover:scale-105 hover:shadow-lg"
