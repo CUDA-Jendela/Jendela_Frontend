@@ -1,14 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { verifyToken } from "@/utils/util";
-// import { AuthApi, UserApi } from "@/api";
-import { /* LoginRequest, */ JwtPayload, /* LoginResponse, SelfResponse */ } from "@/types";
+import { AuthApi, /* UserApi */ } from "@/api";
+import { LoginRequest, JwtPayload, LoginResponse, /* SelfResponse */ } from "@/types";
 
 type AuthContext = {
     isAuthenticated: boolean;
     role: "customer" | "ngo" | "business" | null;
     token: string | null;
-    // login: (payload: LoginRequest) => Promise<void>;
+    login: (payload: LoginRequest) => Promise<void>;
     logout: () => void;
     username: string;
     picture: string;
@@ -20,7 +20,7 @@ const AuthContext = createContext<AuthContext>({
     isAuthenticated: false,
     role: null,
     token: null,
-    // login: async () => {},
+    login: async () => {},
     logout: () => {},
     username: "",
     picture: "",
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         fetchUser();
     }, [token]);
 
-    /* const login = async (payload: LoginRequest) => {
+    const login = async (payload: LoginRequest) => {
         try {
             const auth: LoginResponse = await AuthApi.login(payload);
 
@@ -77,14 +77,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 setRole(decodedPayload.role);
                 Cookies.set("j-token", auth.token as string);
                 setToken(auth.token as string);
-            } else {
-                console.error("Login failed:", auth.message);
             }
         } catch (error) {
             console.error("Login error:", error);
             throw error;
         }
-    }; */
+    };
 
     const logout = () => {
         setIsAuthenticated(false);
@@ -97,7 +95,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <AuthContext.Provider
-            value={{ isAuthenticated, role, token, /* login, */ logout, update, setUpdate, username, picture }}
+            value={{ isAuthenticated, role, token, login, logout, update, setUpdate, username, picture }}
         >
             {children}
         </AuthContext.Provider>
