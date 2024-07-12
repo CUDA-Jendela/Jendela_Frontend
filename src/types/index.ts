@@ -16,6 +16,7 @@ export interface CourseCardProps {
   endDate: string;
   quota: string;
   skills: string[];
+  score: string;
 }
 
 export interface BusinessCardProps {
@@ -81,7 +82,7 @@ export interface SelfResponse {
 }
 
 // User data
-interface userData {
+export interface userData {
   id: string;
   name: string;
   password: string;
