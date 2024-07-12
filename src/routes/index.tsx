@@ -16,6 +16,7 @@ import ExploreBusiness from "@/pages/Business";
 import ChatbotFloatingButton from "@/components/ChatbotFloatingButton";
 import HiringList from "@/pages/HiringList";
 import CourseDetail from "@/pages/Course/$id";
+import DashboardCustomer from "@/pages/DashboardCustomer";
 
 const MainLayout = () => {
     return (
@@ -44,6 +45,10 @@ const routes: RouteObject[] = [
             {
                 path: "/",
                 element: <Home />,
+            },
+            {
+                path: "/dashboard",
+                element: <DashboardCustomer />,
             },
             {
                 path: "/course",
