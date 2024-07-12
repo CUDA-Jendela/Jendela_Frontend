@@ -129,3 +129,13 @@ export interface NGORequest {
   phoneNumber: string;
   logo: string;
 }
+
+// Business Request
+export interface BusinessRequest {
+  name: string;
+  industry: string;
+  description: string;
+  address: string;
+  phoneNumber: string;
+  logoPicture: string;
+}

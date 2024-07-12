@@ -4,23 +4,63 @@ import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import useAuth from "@/contexts/AuthContext";
+import Cookies from "js-cookie";
+import { BusinessRequest } from "@/types";
+import { ProfileApi } from "@/api";
+import { toast } from "react-toastify";
+import { Loader2 } from "lucide-react";
 
 const SetupProfileBusiness: React.FC = () => {
+    const { update, setUpdate } = useAuth();
+    
     const form = useForm({
         defaultValues: {
             name: "",
             phone: "",
-            email: "",
             address: "",
-            city: "",
             description: "",
             industry: "",
             logo: "",
         },
     });
         
-    function onSubmit(values: Record<string, unknown>) {
-        console.log(values);
+    async function onSubmit(data: Record<string, unknown>) {
+        // const profilePictureFile = data.profilePicture;
+
+        // Upload the profile picture and get the URL
+        // const profilePictureUrl = await handleFileUpload(profilePictureFile);
+        const profilePictureUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Ffortmyersradon.com%2Ffort-myers-beach-fl-radon-mitigation-testing-test-system-gas%2Fdummy-user-img-1%2F&psig=AOvVaw1rgm_sGf2nk28wgXaPF3S7&ust=1720854518156000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKiMm-L4oIcDFQAAAAAdAAAAABAJ"
+
+        // Token
+        const jwtToken = Cookies.get("j-token");
+        const payload: BusinessRequest = {
+            name: data.name as string,
+            industry: data.industry as string,
+            description: data.description as string,
+            address: data.address as string,
+            phoneNumber: data.phone as string,
+            logoPicture: profilePictureUrl
+        };
+
+        setUpdate(true);
+
+        // Submit the response
+        await ProfileApi.business(payload, jwtToken as string)
+        .then(() => {
+            toast.success("Registration successful!");
+            // Insert to cookies
+            Cookies.set("j-token", jwtToken as string);
+            window.location.href = "/";
+        })
+        .catch((error) => {
+            // Optionally handle errors
+            console.error("Registration failed:", error);
+            toast.error((error.response?.data as { message: string })?.message || 'Server is unreachable. Please try again later.');
+        })
+        .finally(() => {
+            setUpdate(false);
+        });
     }
 
     return (
@@ -60,20 +100,6 @@ const SetupProfileBusiness: React.FC = () => {
                         />
                         <FormField
                             control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                    <Input type="email" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                                </FormItem>
-                            )}
-                            rules={{ required: "Email is required" }}
-                        />
-                        <FormField
-                            control={form.control}
                             name="address"
                             render={({ field }) => (
                                 <FormItem>
@@ -85,20 +111,6 @@ const SetupProfileBusiness: React.FC = () => {
                                 </FormItem>
                             )}
                             rules={{ required: "Address is required" }}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="city"
-                            render={({ field }) => (
-                                <FormItem>
-                                <FormLabel>City</FormLabel>
-                                <FormControl>
-                                    <Input type="text" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                                </FormItem>
-                            )}
-                            rules={{ required: "City is required" }}
                         />
                         <FormField
                             control={form.control}
@@ -156,7 +168,16 @@ const SetupProfileBusiness: React.FC = () => {
                             )}
                             rules={{ required: "Logo is required" }}
                         />
-                        <Button type="submit" className="w-full color-green-50 text-white rounded-full">Next</Button>
+                        <Button type="submit" className="w-full color-green-50 text-white rounded-full hover:bg-color-green-60 transition-transform duration-300 transform hover:scale-105" disabled={update}>
+                            {update ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Next
+                                </>
+                            ) : (
+                                'Next'
+                            )}
+                        </Button>
                     </form>
                 </Form>
             </div>

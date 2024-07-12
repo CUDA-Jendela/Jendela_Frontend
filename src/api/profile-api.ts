@@ -49,6 +49,19 @@ class ProfileApi {
             throw error;
         }
     }
+
+    static async business(payload: any, token: string): Promise<any> {
+        try {
+            const response = await this.axios.post<any>("/business", payload, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default ProfileApi;
