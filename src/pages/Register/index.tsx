@@ -103,7 +103,7 @@ const Register: React.FC = () => {
             <div className="relative w-[55%] h-screen">
                 <img src={logo} className="absolute top-10 left-10 z-20 h-20" />
                 <p className="absolute bottom-14 left-1/2 transform -translate-x-1/2 w-[90%] text-center font-figtree font-semibold italic text-white text-3xl z-20">
-                    Lorem ipsum dolor sit amet kamu jamet lorem ipsum dolor sit amet
+                    A new beginning starts here, through this window of opportunities
                 </p>
                 <div className="absolute inset-0 bg-green-gradient z-10 opacity-90" />
                 <img src={illustrationImg} className="z-0 h-full w-full object-cover" alt="Illustration" />
