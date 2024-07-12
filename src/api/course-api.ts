@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { CoursesResponse } from "@/types";
+import { CoursesResponse, LocationResponse } from "@/types";
 import { API_URL_LOCAL } from "@/constant";
 
 class CourseApi {
@@ -25,9 +25,9 @@ class CourseApi {
         }
     }
 
-    static async getLocation(token: string): Promise<SelfResponse> {
+    static async getLocation(token: string): Promise<LocationResponse> {
         try {
-            const response = await this.axios.get<SelfResponse>(`/location`, {
+            const response = await this.axios.get<LocationResponse>(`/location`, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                 }

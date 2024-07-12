@@ -174,3 +174,10 @@ export interface CoursesResponse {
   message: string;
   data: CourseCardProps[];
 }
+
+// Courses Respone
+export interface LocationResponse {
+  success: boolean;
+  message: string;
+  data: string[];
+}
