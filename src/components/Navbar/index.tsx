@@ -15,7 +15,7 @@ import useAuth from '@/contexts/AuthContext';
 import people from '@/assets/images/people.avif';
 
 const Navbar: React.FC = () => {
-    const { username, email, role, logout } = useAuth();
+    const { username, role, logout } = useAuth();
 
     const handleLogout = () => {
         // Basically calling logout
@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
 
             {/* Right side */}
             <div className='space-x-4 flex h-full items-center'>
-                {role == "customer" && (<><Link to="/" className="text-white text-lg font-semibold hover:underline hover:underline-offset-4 p-1.5 px-5 rounded-3xl transition-transform duration-300 transform hover:scale-110">
+                {role == "customer" && (<><Link to="/course" className="text-white text-lg font-semibold hover:underline hover:underline-offset-4 p-1.5 px-5 rounded-3xl transition-transform duration-300 transform hover:scale-110">
                     Courses
                 </Link>
                 <Link to="/" className="text-white text-lg font-semibold hover:underline hover:underline-offset-4 p-1.5 px-5 rounded-3xl transition-transform duration-300 transform hover:scale-110">
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
                 </Link>}
 
                 {/* Right Side Links */}
-                <div className="flex items-center space-x-5">
+                {role != null && <div className="flex items-center space-x-5">
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuItem>
@@ -60,8 +60,7 @@ const Navbar: React.FC = () => {
                                         <AvatarFallback>{username}</AvatarFallback>
                                     </Avatar>
                                     <div className="flex flex-col text-start md:block hidden">
-                                        <div className="text-white">{username}</div>
-                                        <div className="text-white">{email}</div>
+                                        <div className="text-white text-base">{username}</div>
                                     </div>
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent>
@@ -70,7 +69,7 @@ const Navbar: React.FC = () => {
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
-                </div>
+                </div>}
             </div>
         </div>
     )

@@ -55,7 +55,7 @@ const Login: React.FC = () => {
         } catch (error) {
             console.error("Submit error:", error);
             const err = error as AxiosError;
-            toast.error((err.response?.data as { error: string })?.error || 'Server is unreachable. Please try again later.');
+            toast.error((err.response?.data as { message: string })?.message || 'Server is unreachable. Please try again later.');
         } finally {
             setUpdate(false);
         }
