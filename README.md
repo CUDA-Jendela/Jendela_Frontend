@@ -66,55 +66,18 @@ Your gateway to new beginnings: Jendela's web application offers an engaging and
 
 ## 📸 &nbsp;Website Preview
 <table style="width:100%; text-align:center">
-    <col width="49%">
-    <col width="49%">
+    <col width="100%">
     <tr>
         <td width="1%" align="center"><img height="400" src="./img/demo/home1.png"/></td>
-        <td width="1%" align="center"><img height="400" src="./img/demo/home2.png"/></td>
     </tr>
     <tr>
         <td width="1%" align="center">Home Page 1</td>
+    </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/home2.png"/></td>
+    </tr>
+    <tr>
         <td width="1%" align="center">Home Page 2</td>
-    </tr>
-    <tr>
-        <td width="1%" align="center"><img height="400" src="./img/demo/login.png"/></td>
-        <td width="1%" align="center"><img height="400" src="./img/demo/register.png"/></td>
-    </tr>
-    <tr>
-        <td width="1%" align="center">Login Page</td>
-        <td width="1%" align="center">Register Page</td>
-    </tr>
-    <tr>
-        <td width="1%" align="center"><img height="400" src="./img/demo/dashboard.png"/></td>
-        <td width="1%" align="center"><img height="400" src="./img/demo/courses.png"/></td>
-    </tr>
-    <tr>
-        <td width="1%" align="center">Dashboard</td>
-        <td width="1%" align="center">Courses</td>
-    </tr>
-    <tr>
-        <td width="1%" align="center"><img height="400" src="./img/demo/business.png"/></td>
-        <td width="1%" align="center"><img height="400" src="./img/demo/profile.png"/></td>
-    </tr>
-    <tr>
-        <td width="1%" align="center">Businesses</td>
-        <td width="1%" align="center">Profile</td>
-    </tr>
-    <tr>
-        <td width="1%" align="center"><img height="400" src="./img/demo/addCourse.png"/></td>
-        <td width="1%" align="center"><img height="400" src="./img/demo/courseDetail.png"/></td>
-    </tr>
-    <tr>
-        <td width="1%" align="center">Add Course</td>
-        <td width="1%" align="center">Detail Course</td>
-    </tr>
-    <tr>
-        <td width="1%" align="center"><img height="400" src="./img/demo/hiring.png"/></td>
-        <td width="1%" align="center"><img height="400" src="./img/demo/setup.png"/></td>
-    </tr>
-    <tr>
-        <td width="1%" align="center">Hiring List</td>
-        <td width="1%" align="center">Setup Profile</td>
     </tr>
 </table>
 
