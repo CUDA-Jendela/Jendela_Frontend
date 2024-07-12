@@ -70,6 +70,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 setRole(decodedPayload.role);
                 Cookies.set("j-token", auth.token as string);
                 setToken(auth.token as string);
+                window.location.href = "/";
             }
         } catch (error) {
             console.error("Login error:", error);
