@@ -77,9 +77,7 @@ const routes: RouteObject[] = [
             {
                 path: "/setup-cust",
                 element: (
-                    <ProtectedRoute roles={["customer"]}>
-                        <SetupProfileCustomer />
-                    </ProtectedRoute>
+                    <SetupProfileCustomer />
                 ),
             },
             {
@@ -93,17 +91,13 @@ const routes: RouteObject[] = [
             {
                 path: "/setup-ngo",
                 element: (
-                    <ProtectedRoute roles={["ngo"]}>
-                        <SetupProfileNGO />
-                    </ProtectedRoute>
+                    <SetupProfileNGO />
                 ),
             },
             {
                 path: "/setup-business",
                 element: (
-                    <ProtectedRoute roles={["business"]}>
-                        <SetupProfileBusiness />
-                    </ProtectedRoute>
+                    <SetupProfileBusiness />
                 ),
             },
         ],
