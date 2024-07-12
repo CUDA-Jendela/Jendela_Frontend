@@ -18,6 +18,7 @@ import HiringList from "@/pages/HiringList";
 import CourseDetail from "@/pages/Course/$id";
 import DashboardCustomer from "@/pages/DashboardCustomer";
 import BusinessDetail from "@/pages/Business/$id";
+import Profile from "@/pages/Profile";
 
 const MainLayout = () => {
     return (
@@ -74,6 +75,10 @@ const routes: RouteObject[] = [
             {
                 path: "/hiring",
                 element: <HiringList />,
+            },
+            {
+                path: "/profile",
+                element: <Profile />,
             },
         ],
     },
