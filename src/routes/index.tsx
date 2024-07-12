@@ -17,6 +17,7 @@ import ChatbotFloatingButton from "@/components/ChatbotFloatingButton";
 import HiringList from "@/pages/HiringList";
 import CourseDetail from "@/pages/Course/$id";
 import DashboardCustomer from "@/pages/DashboardCustomer";
+import BusinessDetail from "@/pages/Business/$id";
 
 const MainLayout = () => {
     return (
@@ -65,6 +66,10 @@ const routes: RouteObject[] = [
             {
                 path: "/business",
                 element: <ExploreBusiness />,
+            },
+            {
+                path: "/business/:id",
+                element: <BusinessDetail />,
             },
             {
                 path: "/hiring",

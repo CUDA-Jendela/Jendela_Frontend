@@ -19,10 +19,14 @@ export interface CourseCardProps {
 }
 
 export interface BusinessCardProps {
+  id: string;
   logo: string;
   name: string;
   industry: string;
+  address: string;
   city: string;
+  phone: string;
+  description: string;
 }
 
 export interface CustomerCardProps {
