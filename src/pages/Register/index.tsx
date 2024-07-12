@@ -1,21 +1,25 @@
 import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+import { Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select } from "@/components/ui/select";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { JwtPayload, RegisterRequest, RegisterResponse } from "@/types";
 import illustrationImg from "@/assets/images/register_image.jpg";
 import logo from "@/assets/logo_white.png";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { RegisterRequest, RegisterResponse } from "@/types";
 import useAuth from "@/contexts/AuthContext";
-import { toast } from "react-toastify";
-import { AxiosError } from "axios";
+import { verifyToken } from "@/utils/util";
 import { AuthApi } from "@/api";
-import { Loader2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+
 
 const formSchema = z.object({
     email: z.string().email({
@@ -30,12 +34,12 @@ const formSchema = z.object({
     role: z.string().min(1, {
         message: "Please select a role.",
     }),
-})
+});
 
 const Register: React.FC = () => {
     const { isAuthenticated, update, setUpdate } = useAuth();
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         if (isAuthenticated) {
             navigate("/");
@@ -51,7 +55,7 @@ const Register: React.FC = () => {
             role: "",
         },
     });
-        
+
     async function onSubmit(data: z.infer<typeof formSchema>) {
         try {
             if (data.password === data.confirmPassword) {
@@ -61,19 +65,34 @@ const Register: React.FC = () => {
                     role: data.role,
                 };
                 setUpdate(true);
-        
+
                 // Submit the response
                 const submitResponse: RegisterResponse = await AuthApi.register(payload);
                 if (submitResponse.success) {
                     toast.success(submitResponse.message as string);
+                    if (submitResponse.token) {
+                        // Insert to cookies
+                        Cookies.set("j-token", submitResponse.token as string);
+
+                        // Decoded based on the role
+                        const decodedPayload: JwtPayload = verifyToken(submitResponse.token as string) as JwtPayload;
+
+                        // Re-route based on role
+                        if (decodedPayload.role == "customer") {
+                            navigate("/setup-cust");
+                        } else if (decodedPayload.role == "ngo") {
+                            navigate("/setup-ngo");
+                        } else if (decodedPayload.role == "business") {
+                            navigate("/setup-business");
+                        }
+                    } 
                 }
             } else {
-                console.log("Masuk sini?????");
                 toast.error("Passwords do not match, please try again.");
             }
         } catch (error) {
             const err = error as AxiosError;
-            toast.error((err.response?.data as { error: string })?.error || 'Server is unreachable. Please try again later.');
+            toast.error((err.response?.data as { message: string })?.message || 'Server is unreachable. Please try again later.');
         } finally {
             setUpdate(false);
         }
@@ -89,8 +108,8 @@ const Register: React.FC = () => {
                 <div className="absolute inset-0 bg-green-gradient z-10 opacity-90" />
                 <img src={illustrationImg} className="z-0 h-full w-full object-cover" alt="Illustration" />
             </div>
-            
-            <div className="w-[45%] h-screen bg-white content-center p-[10%]">
+
+            <div className="w-[45%] h-screen bg-white content-center px-[10%] py-[3%]">
                 <div className="flex flex-col w-full gap-3">
                     <p className="font-figtree text-4xl font-semibold">Create an Account</p>
                     <p className="font-figtree text-base font-normal mb-4">Register to create your account</p>
@@ -104,7 +123,7 @@ const Register: React.FC = () => {
                                         <FormControl>
                                             <Input type="email" placeholder="Email" {...field} />
                                         </FormControl>
-                                        <FormMessage className="text-left"/>
+                                        <FormMessage className="text-left" />
                                     </FormItem>
                                 )}
                             />
@@ -116,7 +135,7 @@ const Register: React.FC = () => {
                                         <FormControl>
                                             <Input type="password" placeholder="Password" {...field} />
                                         </FormControl>
-                                        <FormMessage className="text-left"/>
+                                        <FormMessage className="text-left" />
                                     </FormItem>
                                 )}
                             />
@@ -128,7 +147,7 @@ const Register: React.FC = () => {
                                         <FormControl>
                                             <Input type="password" placeholder="Confirm password" {...field} />
                                         </FormControl>
-                                        <FormMessage className="text-left"/>
+                                        <FormMessage className="text-left" />
                                     </FormItem>
                                 )}
                             />
@@ -149,22 +168,22 @@ const Register: React.FC = () => {
                                                 <SelectItem value="business">I am a business that needs employees</SelectItem>
                                             </SelectContent>
                                         </Select>
-                                        <FormMessage className="text-left"/>
+                                        <FormMessage className="text-left" />
                                     </FormItem>
                                 )}
                             />
+                            <Button type="submit" className="w-full color-green-50 text-white rounded-full hover:bg-color-green-60 transition-transform duration-300 transform hover:scale-105" disabled={update}>
+                                {update ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Registering
+                                    </>
+                                ) : (
+                                    'Register'
+                                )}
+                            </Button>
                         </form>
                     </Form>
-                    <Button type="submit" className="w-full color-green-50 text-white rounded-full hover:bg-color-green-60 transition-transform duration-300 transform hover:scale-105" disabled={update}>
-                        {update ? (
-                            <>
-                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                Registering
-                            </>
-                        ) : (
-                            'Register'
-                        )}
-                    </Button>
                     <div className="flex flex-row gap-1 justify-center">
                         <p className="text-sm">Already registered?</p>
                         <a className="text-sm text-green-50" href="/login">Login here</a>
