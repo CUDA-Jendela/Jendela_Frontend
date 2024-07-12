@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select } from "@/components/ui/select";
@@ -9,6 +9,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { RegisterRequest, RegisterResponse } from "@/types";
+import useAuth from "@/contexts/AuthContext";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+import { AuthApi } from "@/api";
+import { Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
     email: z.string().email({
@@ -23,11 +30,18 @@ const formSchema = z.object({
     role: z.string().min(1, {
         message: "Please select a role.",
     }),
-}).refine(data => data.password === data.confirmPassword, {
-    message: "Passwords must match.",
-});
+})
 
 const Register: React.FC = () => {
+    const { isAuthenticated, update, setUpdate } = useAuth();
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/");
+        }
+    }, [isAuthenticated, navigate]);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -38,9 +52,31 @@ const Register: React.FC = () => {
         },
     });
         
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(form.formState.errors);
-        console.log(values);
+    async function onSubmit(data: z.infer<typeof formSchema>) {
+        try {
+            if (data.password === data.confirmPassword) {
+                const payload: RegisterRequest = {
+                    email: data.email,
+                    password: data.password,
+                    role: data.role,
+                };
+                setUpdate(true);
+        
+                // Submit the response
+                const submitResponse: RegisterResponse = await AuthApi.register(payload);
+                if (submitResponse.success) {
+                    toast.success(submitResponse.message as string);
+                }
+            } else {
+                console.log("Masuk sini?????");
+                toast.error("Passwords do not match, please try again.");
+            }
+        } catch (error) {
+            const err = error as AxiosError;
+            toast.error((err.response?.data as { error: string })?.error || 'Server is unreachable. Please try again later.');
+        } finally {
+            setUpdate(false);
+        }
     }
 
     return (
@@ -68,7 +104,7 @@ const Register: React.FC = () => {
                                         <FormControl>
                                             <Input type="email" placeholder="Email" {...field} />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage className="text-left"/>
                                     </FormItem>
                                 )}
                             />
@@ -80,7 +116,7 @@ const Register: React.FC = () => {
                                         <FormControl>
                                             <Input type="password" placeholder="Password" {...field} />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage className="text-left"/>
                                     </FormItem>
                                 )}
                             />
@@ -92,7 +128,7 @@ const Register: React.FC = () => {
                                         <FormControl>
                                             <Input type="password" placeholder="Confirm password" {...field} />
                                         </FormControl>
-                                        <FormMessage errors={form.formState.errors} name="confirmPassword" />
+                                        <FormMessage className="text-left"/>
                                     </FormItem>
                                 )}
                             />
@@ -108,18 +144,27 @@ const Register: React.FC = () => {
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="Customer">I am looking for trainings and jobs</SelectItem>
-                                                <SelectItem value="NGO">I am a foundation that provides trainings</SelectItem>
-                                                <SelectItem value="Business">I am a business that needs employees</SelectItem>
+                                                <SelectItem value="customer">I am looking for trainings and jobs</SelectItem>
+                                                <SelectItem value="ngo">I am a foundation that provides trainings</SelectItem>
+                                                <SelectItem value="business">I am a business that needs employees</SelectItem>
                                             </SelectContent>
                                         </Select>
-                                        <FormMessage />
+                                        <FormMessage className="text-left"/>
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit" className="w-full color-green-50 text-white rounded-full">Register</Button>
                         </form>
                     </Form>
+                    <Button type="submit" className="w-full color-green-50 text-white rounded-full hover:bg-color-green-60 transition-transform duration-300 transform hover:scale-105" disabled={update}>
+                        {update ? (
+                            <>
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                Registering
+                            </>
+                        ) : (
+                            'Register'
+                        )}
+                    </Button>
                     <div className="flex flex-row gap-1 justify-center">
                         <p className="text-sm">Already registered?</p>
                         <a className="text-sm text-green-50" href="/login">Login here</a>

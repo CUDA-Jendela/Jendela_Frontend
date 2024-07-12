@@ -4,8 +4,11 @@ import { JwtPayload } from "@/types";
 function isJwtPayload(object: any): object is JwtPayload {
     return (
         typeof object === 'object' &&
-        typeof object.sub === 'number' &&
+        typeof object.id === 'string' &&
+        typeof object.email === 'string' &&
         typeof object.role === 'string' &&
+        typeof object.isVerified === 'boolean' &&
+        typeof object.iat === 'number' &&
         typeof object.exp === 'number'
     );
 }

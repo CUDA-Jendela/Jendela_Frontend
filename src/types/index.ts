@@ -32,7 +32,7 @@ export interface LoginResponse {
 
 // Register Request
 export interface RegisterRequest {
-    email: boolean;
+    email: string;
     password: string;
     role: string;
 }

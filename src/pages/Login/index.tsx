@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import illustrationImg from "@/assets/images/login_image.jpg";
@@ -7,6 +7,12 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { useForm } from "react-hook-form";
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import useAuth from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { LoginRequest } from "@/types";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
  
 const formSchema = z.object({
     email: z.string().email({
@@ -18,6 +24,15 @@ const formSchema = z.object({
 })
 
 const Login: React.FC = () => {
+    const { isAuthenticated, login, update, setUpdate } = useAuth();
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/");
+        }
+    }, [isAuthenticated, navigate]);
+    
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -26,8 +41,24 @@ const Login: React.FC = () => {
         },
     })
         
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+    function onSubmit(data: z.infer<typeof formSchema>) {
+        try {
+            const payload: LoginRequest = {
+                email: data.email,
+                password: data.password
+            };
+            setUpdate(true);
+
+            login(payload);
+
+            toast.success("Login successful");
+        } catch (error) {
+            console.error("Submit error:", error);
+            const err = error as AxiosError;
+            toast.error((err.response?.data as { error: string })?.error || 'Server is unreachable. Please try again later.');
+        } finally {
+            setUpdate(false);
+        }
     }
     
     return (
@@ -71,7 +102,16 @@ const Login: React.FC = () => {
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit" className="w-full color-green-50 text-white rounded-full">Login</Button>
+                            <Button type="submit" className="w-full color-green-50 text-white rounded-full hover:bg-color-green-60 transition-transform duration-300 transform hover:scale-105" disabled={update}>
+                                {update ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Logging In
+                                    </>
+                                ) : (
+                                    'Login'
+                                )}
+                            </Button>
                         </form>
                         </Form>
                     <div className="flex flex-row gap-1 justify-center">
