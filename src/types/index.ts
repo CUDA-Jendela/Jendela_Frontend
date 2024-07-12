@@ -119,3 +119,13 @@ export interface SkillData {
   id: string;
   name: string;
 }
+
+// NGO Request
+export interface NGORequest {
+  name: string;
+  address: string;
+  city: string;
+  description: string;
+  phoneNumber: string;
+  logo: string;
+}
