@@ -19,10 +19,14 @@ export interface CourseCardProps {
 }
 
 export interface BusinessCardProps {
+  id: string;
   logo: string;
   name: string;
   industry: string;
+  address: string;
   city: string;
+  phone: string;
+  description: string;
 }
 
 export interface CustomerCardProps {
@@ -139,6 +143,30 @@ export interface BusinessRequest {
   phoneNumber: string;
   logoPicture: string;
 }
+
+// Get Chat Response
+export interface ChatResponse {
+  success: boolean;
+  message: string;
+  data: ChatData[];
+}
+
+// Chat Data
+export interface ChatData {
+  question: string;
+  answer: string;
+}
+
+// Send Chat
+export interface SendChatRequest {
+  prompt: string;
+}
+
+export interface SendChatResponse {
+  success: boolean;
+  message: string;
+}
+
 
 // Courses Respone
 export interface CoursesResponse {

@@ -133,39 +133,59 @@ export const Courses = [
 
 export const businesses = [
   {
-    id: 1,
+    id: "1",
     logo: logoPlaceholder,
     name: "CUDA Canteen",
     industry: "Food and beverage",
+    address: "Ganesha Street 10",
     city: "Bandung",
+    phone: "081234567890",
+    description:
+      "CUDA Canteen offers a variety of delicious and affordable meals that cater to students and professionals alike. Our menu features a mix of local and international cuisines, all prepared with fresh ingredients to ensure the highest quality. Whether you're looking for a quick bite or a hearty meal, CUDA Canteen is the perfect place to satisfy your cravings.",
   },
   {
-    id: 2,
+    id: "2",
     logo: logoPlaceholder,
     name: "Flower Bouquet by CUDA Projects",
     industry: "Art",
+    address: "Thamrin Street 5",
     city: "Jakarta",
+    phone: "081987654321",
+    description:
+      "Flower Bouquet by CUDA Projects specializes in creating stunning floral arrangements for all occasions. Our talented florists combine their artistic skills with a passion for flowers to deliver beautiful and unique bouquets. From weddings and anniversaries to corporate events and daily decorations, we bring a touch of nature's elegance to your special moments.",
   },
   {
-    id: 3,
+    id: "3",
     logo: logoPlaceholder,
     name: "GH Japanese Restaurant",
     industry: "Food and beverages",
+    address: "Sudirman Street 22",
     city: "Tangerang",
+    phone: "082345678901",
+    description:
+      "GH Japanese Restaurant invites you to experience authentic Japanese cuisine in a serene and elegant setting. Our menu features a wide range of traditional dishes, including sushi, sashimi, ramen, and tempura, all crafted with the finest ingredients. Whether you're dining with family or hosting a business meeting, GH Japanese Restaurant offers a memorable culinary journey.",
   },
   {
-    id: 4,
+    id: "4",
     logo: logoPlaceholder,
     name: "Garuda Constructions",
     industry: "Construction",
+    address: "Merdeka Street 15",
     city: "Bekasi",
+    phone: "083456789012",
+    description:
+      "Garuda Constructions is a leading construction company known for its commitment to excellence and innovation. We provide a comprehensive range of construction services, including residential, commercial, and infrastructure projects. Our team of skilled professionals ensures that every project is completed to the highest standards, delivering quality and reliability to our clients.",
   },
   {
-    id: 5,
+    id: "5",
     logo: logoPlaceholder,
     name: "Coffee Cafe",
     industry: "Food and beverages",
+    address: "Dago Street 8",
     city: "Bandung",
+    phone: "084567890123",
+    description:
+      "Coffee Cafe is a cozy and inviting spot where coffee lovers can indulge in a variety of specialty brews and delicious pastries. Our baristas are passionate about coffee and are dedicated to providing a warm and welcoming atmosphere for our customers. Whether you're meeting friends, working remotely, or simply enjoying a quiet moment, Coffee Cafe is the perfect place to relax and unwind.",
   },
 ];
 
