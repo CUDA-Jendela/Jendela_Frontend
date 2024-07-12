@@ -12,9 +12,7 @@
 <h1 align="center">Jendela Frontend Website</h1>
 <div align="center">
 
-| Customer | NGOs | Business |
-| :----: | :----: | :----: |
-| <img height="400" src="https://firebasestorage.googleapis.com/v0/b/upheld-acumen-420202.appspot.com/o/readme-assets%2Fscreen%2FPatient%20Page.jpg?alt=media&token=1ff249bd-f214-4df6-bd14-efde46612013"> | <img height="400" src="https://firebasestorage.googleapis.com/v0/b/upheld-acumen-420202.appspot.com/o/readme-assets%2Fscreen%2FPatient%20Page.jpg?alt=media&token=1ff249bd-f214-4df6-bd14-efde46612013"> | <img height="400" src="https://firebasestorage.googleapis.com/v0/b/upheld-acumen-420202.appspot.com/o/readme-assets%2Fscreen%2FPatient%20Page.jpg?alt=media&token=1ff249bd-f214-4df6-bd14-efde46612013"> |
+TODO : GANTI BANNER
 
 </div>
 Your gateway to new beginnings: Jendela's web application offers an engaging and user-friendly interface, presenting real-time opportunities, personalized training recommendations, and a supportive community. It's your digital guide, empowering ex-convicts to rebuild their lives and seize fresh career prospects, one click at a time.
@@ -70,48 +68,48 @@ Your gateway to new beginnings: Jendela's web application offers an engaging and
     <col width="49%">
     <col width="49%">
     <tr>
-        <td width="1%" align="center"><img height="400" src="./demo/Register.gif"/></td>
-        <td width="1%" align="center"><img height="400" src="./demo/Login.gif"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/home1.png"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/home2.png"/></td>
     </tr>
     <tr>
         <td width="1%" align="center">Home Page 1</td>
         <td width="1%" align="center">Home Page 2</td>
     </tr>
     <tr>
-        <td width="1%" align="center"><img height="400" src="./demo/Register.gif"/></td>
-        <td width="1%" align="center"><img height="400" src="./demo/Login.gif"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/login.png"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/register.png"/></td>
     </tr>
     <tr>
         <td width="1%" align="center">Login Page</td>
         <td width="1%" align="center">Register Page</td>
     </tr>
     <tr>
-        <td width="1%" align="center"><img height="400" src="./demo/Register.gif"/></td>
-        <td width="1%" align="center"><img height="400" src="./demo/Login.gif"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/dashboard.png"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/courses.png"/></td>
     </tr>
     <tr>
         <td width="1%" align="center">Dashboard</td>
         <td width="1%" align="center">Courses</td>
     </tr>
     <tr>
-        <td width="1%" align="center"><img height="400" src="./demo/Register.gif"/></td>
-        <td width="1%" align="center"><img height="400" src="./demo/Login.gif"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/business.png"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/profile.png"/></td>
     </tr>
     <tr>
         <td width="1%" align="center">Businesses</td>
         <td width="1%" align="center">Profile</td>
     </tr>
     <tr>
-        <td width="1%" align="center"><img height="400" src="./demo/Register.gif"/></td>
-        <td width="1%" align="center"><img height="400" src="./demo/Login.gif"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/addCourse.png"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/courseDetail.png"/></td>
     </tr>
     <tr>
         <td width="1%" align="center">Add Course</td>
         <td width="1%" align="center">Detail Course</td>
     </tr>
     <tr>
-        <td width="1%" align="center"><img height="400" src="./demo/Register.gif"/></td>
-        <td width="1%" align="center"><img height="400" src="./demo/Login.gif"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/hiring.png"/></td>
+        <td width="1%" align="center"><img height="400" src="./img/demo/setup.png"/></td>
     </tr>
     <tr>
         <td width="1%" align="center">Hiring List</td>
