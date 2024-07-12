@@ -3,12 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { CustomerRequest, CustomerResponse, JwtPayload } from "@/types";
+import { CustomerRequest, JwtPayload } from "@/types";
 import useAuth from "@/contexts/AuthContext";
 import { ProfileApi } from "@/api";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
-import { AxiosError } from "axios";
 import { Loader2 } from "lucide-react";
 import { verifyToken } from "@/utils/util";
 
@@ -26,46 +25,42 @@ const SetupProfileCustomer: React.FC = () => {
     });
 
     async function onSubmit(data: Record<string, unknown>) {
-        try {
-            const birthdate = new Date(data.birthdate as string).toISOString();
-            // const profilePictureFile = data.profilePicture;
+        const birthdate = new Date(data.birthdate as string).toISOString();
+        // const profilePictureFile = data.profilePicture;
 
-            // Upload the profile picture and get the URL
-            // const profilePictureUrl = await handleFileUpload(profilePictureFile);
-            const profilePictureUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Ffortmyersradon.com%2Ffort-myers-beach-fl-radon-mitigation-testing-test-system-gas%2Fdummy-user-img-1%2F&psig=AOvVaw1rgm_sGf2nk28wgXaPF3S7&ust=1720854518156000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKiMm-L4oIcDFQAAAAAdAAAAABAJ"
+        // Upload the profile picture and get the URL
+        // const profilePictureUrl = await handleFileUpload(profilePictureFile);
+        const profilePictureUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Ffortmyersradon.com%2Ffort-myers-beach-fl-radon-mitigation-testing-test-system-gas%2Fdummy-user-img-1%2F&psig=AOvVaw1rgm_sGf2nk28wgXaPF3S7&ust=1720854518156000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKiMm-L4oIcDFQAAAAAdAAAAABAJ"
 
-            // Token
-            const jwtToken = Cookies.get("j-token");
-            const decodedPayload: JwtPayload = verifyToken(jwtToken as string) as JwtPayload;
-            const payload: CustomerRequest = {
-                userID: decodedPayload.id,
-                name: data.name as string,
-                birthDate: birthdate,
-                city: data.city as string,
-                phoneNumber: data.phone as string,
-                profilePicture: profilePictureUrl,
-            };
+        // Token
+        const jwtToken = Cookies.get("j-token");
+        const decodedPayload: JwtPayload = verifyToken(jwtToken as string) as JwtPayload;
+        const payload: CustomerRequest = {
+            userID: decodedPayload.id,
+            name: data.name as string,
+            birthDate: birthdate,
+            city: data.city as string,
+            phoneNumber: data.phone as string,
+            profilePicture: profilePictureUrl,
+        };
 
-            setUpdate(true);
+        setUpdate(true);
 
-            // Submit the response
-            const customerResponse: CustomerResponse = await ProfileApi.customer1(payload, jwtToken as string);
-            if (customerResponse.success) {
-                toast.success(customerResponse.message as string);
-
-                // Insert to cookies
-                Cookies.set("j-token", customerResponse.token as string);
-
-                // Re-route based on role
-                window.location.href = "/setup-cust-skill";
-            }
-        } catch (error) {
-            console.error("Submit error:", error);
-            const err = error as AxiosError;
-            toast.error((err.response?.data as { message: string })?.message || 'Server is unreachable. Please try again later.');
-        } finally {
+        // Submit the response
+        await ProfileApi.customer1(payload, jwtToken as string)
+        .then(() => {
+            // Insert to cookies
+            Cookies.set("j-token", jwtToken as string);
+            window.location.href = "/setup-cust-skill";
+        })
+        .catch((error) => {
+            // Optionally handle errors
+            console.error("Registration failed:", error);
+            toast.error((error.response?.data as { message: string })?.message || 'Server is unreachable. Please try again later.');
+        })
+        .finally(() => {
             setUpdate(false);
-        }
+        });
     }
 
     return (
