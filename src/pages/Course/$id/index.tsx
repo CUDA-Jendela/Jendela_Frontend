@@ -28,7 +28,11 @@ const CourseDetail: React.FC = () => {
     }, [id]);
 
     if (!course) {
-        return <div>Loading...</div>;
+        return (
+            <div className="w-full h-screen mt-52 flex justify-center align-center text-5xl font-bold text-primary overflow-hidden">
+                Loading...
+            </div>
+        );
     }
 
     const formatDate = (dateString: string) => {
