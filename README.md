@@ -79,6 +79,66 @@ Your gateway to new beginnings: Jendela's web application offers an engaging and
     <tr>
         <td width="1%" align="center">Home Page 2</td>
     </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/login.png"/></td>
+    </tr>
+    <tr>
+        <td width="1%" align="center">Login Page</td>
+    </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/register.png"/></td>
+    </tr>
+    <tr>
+        <td width="1%" align="center">Register Page</td>
+    </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/dashboard.png"/></td>
+    </tr>
+    <tr>
+        <td width="1%" align="center">Dashboard</td>
+    </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/courses.png"/></td>
+    </tr>
+    <tr>
+        <td width="1%" align="center">Courses</td>
+    </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/business.png"/></td>
+    </tr>
+    <tr>
+        <td width="1%" align="center">Businesses</td>
+    </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/profile.png"/></td>
+    </tr>
+    <tr>
+        <td width="1%" align="center">Profile</td>
+    </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/addCourse.png"/></td>
+    </tr>
+    <tr>
+        <td width="1%" align="center">Add Course</td>
+    </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/courseDetail.png"/></td>
+    </tr>
+    <tr>
+        <td width="1%" align="center">Detail Course</td>
+    </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/hiring.png"/></td>
+    </tr>
+    <tr>
+        <td width="1%" align="center">Hiring List</td>
+    </tr>
+    <tr>
+        <td width="1%" align="center"><img height="400" src="./img/demo/setup.png"/></td>
+    </tr>
+    <tr>
+        <td width="1%" align="center">Setup Profile</td>
+    </tr>
 </table>
 
 ## 👥 &nbsp;Contributors
