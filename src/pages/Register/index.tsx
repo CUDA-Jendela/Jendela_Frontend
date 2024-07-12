@@ -42,7 +42,7 @@ const Register: React.FC = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate("/");
+            navigate("/dashboard");
         }
 
         // role

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { Button } from "@/components/ui/button";
 import { FAQItem, featureCardData } from "@/data";
@@ -7,9 +7,19 @@ import logoWhite from "@/assets/logo_white.png";
 import { Card } from "@/components";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import banner from "@/assets/svg/home_banner.svg";
+import useAuth from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
+    const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
     const openingSectionRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/dashboard");
+        }
+    }, [isAuthenticated, navigate]);
 
     const scrollToOpeningSection = () => {
         if (openingSectionRef.current) {
