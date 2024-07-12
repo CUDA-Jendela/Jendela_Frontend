@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import { Button } from "@/components/ui/button";
 import { FAQItem, featureCardData } from "@/data";
@@ -9,21 +9,34 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import banner from "@/assets/svg/home_banner.svg";
 
 const Home: React.FC = () => {
+    const openingSectionRef = useRef<HTMLDivElement>(null);
+
+    const scrollToOpeningSection = () => {
+        if (openingSectionRef.current) {
+            openingSectionRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <main className="flex flex-col bg-white w-full min-h-screen">
-            <img src={banner} className="mb-14 z-0" />
+            <img src={banner} className="z-0" />
             <div className="absolute left-0 flex flex-col z-10">
                 <div className="w-1/2 flex flex-col align-center pl-20 pt-20">
                     <img src={logoWhite} className="w-64 pb-4"></img>
                     <h3 className="text-white text-lg">Jendela empowers ex-prisoners by providing skill development through NGO training and connecting them with job opportunities, ensuring they can contribute positively to society.</h3>
                 </div>
                 <div className="pl-20 pt-10">
-                        <Button className="border rounded-3xl text-xl p-6 border-white text-white hover:bg-white hover:text-primary hover:font-bold">Get to know more</Button>
+                        <Button 
+                            onClick={scrollToOpeningSection}
+                            className="border rounded-3xl text-xl p-6 border-white text-white hover:bg-white hover:text-primary hover:font-bold"
+                        >
+                                Get to know more
+                        </Button>
                 </div>
             </div>
 
             {/* Main content */}
-            <div className="w-full pt-5 pb-20">
+            <div ref={openingSectionRef} className="w-full pt-32 pb-20">
                 {/* Opening */}
                 <div className="w-full flex flex-col space-y-3 justify-center items-center text-center">
                     <h1 className="text-4xl font-bold text-primary">Why Jendela?</h1>
