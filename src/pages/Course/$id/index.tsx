@@ -46,17 +46,17 @@ const CourseDetail: React.FC = () => {
 
                     <div className="flex flex-col gap-2 py-5 h-full w-[60%] justify-center">
                         <h2 className="text-3xl font-bold">{course.title}</h2>
-                        <p className="text-base text-gray-500">{course.ngoName}</p>
+                        <p className="text-lg text-gray-500">{course.ngoName}</p>
 
-                        <div className="flex items-center text-base">
+                        <div className="flex items-center text-lg">
                             <FaMapMarkerAlt className="mr-2 text-gray-500" />
                             {course.location}
                         </div>
-                        <div className="flex items-center text-base">
+                        <div className="flex items-center text-lg">
                             <FaCalendarAlt className="mr-2 text-gray-500" />
                             {`${formatDate(course.startDate)} - ${formatDate(course.endDate)}`}
                         </div>
-                        <div className="flex items-center text-base">
+                        <div className="flex items-center text-lg">
                             <FaUsers className="mr-2 text-gray-500" />
                             Quota: {course.quota}
                         </div>
@@ -66,17 +66,17 @@ const CourseDetail: React.FC = () => {
                         <Button className="text-lg text-white py-6 px-6">Enroll now</Button>
                     </div>
                 </div>
-                <h3 className="mt-6 text-xl font-bold">Skills</h3>
+                <h3 className="mt-6 text-2xl font-bold">Skills</h3>
                 <div className="mt-2">
                     {course.skills.map((skill: string) => (
-                        <span key={skill} className="bg-gray-200 px-2 py-1 rounded-full text-sm mr-2">
+                        <span key={skill} className="bg-gray-200 px-2 py-1 rounded-full text-base mr-2">
                             {skill}
                         </span>
                     ))}
                 </div>
-                <h3 className="mt-6 text-xl font-bold">Description</h3>
-                <div className="mt-2">
-                    <p className="text-base">{course.description}</p>
+                <h3 className="mt-6 text-2xl font-bold">Description</h3>
+                <div className="mt-2 mb-4">
+                    <p className="text-lg">{course.description}</p>
                 </div>
             </div>
         </main>
