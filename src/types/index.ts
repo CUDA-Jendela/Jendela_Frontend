@@ -78,6 +78,16 @@ interface userData {
   email: string;
 }
 
+export interface Message {
+  type: "user" | "bot";
+  content: string;
+}
+
+export interface Message {
+  type: "user" | "bot";
+  content: string;
+}
+
 // Customer Request
 export interface CustomerRequest {
   userID: string;
