@@ -52,13 +52,12 @@ const SetupProfileCustomer: React.FC = () => {
             const customerResponse: CustomerResponse = await ProfileApi.customer1(payload, jwtToken as string);
             if (customerResponse.success) {
                 toast.success(customerResponse.message as string);
-                if (customerResponse.token) {
-                    // Insert to cookies
-                    Cookies.set("j-token", customerResponse.token as string);
 
-                    // Re-route based on role
-                    window.location.href = "/setup-cust-skill";
-                }
+                // Insert to cookies
+                Cookies.set("j-token", customerResponse.token as string);
+
+                // Re-route based on role
+                window.location.href = "/setup-cust-skill";
             }
         } catch (error) {
             console.error("Submit error:", error);

@@ -112,10 +112,10 @@ export interface Message {
 export interface SkillResponse {
   success: boolean;
   message: string;
-  data: skillData[];
+  data: SkillData[];
 }
 
-interface skillData {
+export interface SkillData {
   id: string;
   name: string;
 }

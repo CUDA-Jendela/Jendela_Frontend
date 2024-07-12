@@ -7,7 +7,7 @@ function isJwtPayload(object: any): object is JwtPayload {
         typeof object.id === 'string' &&
         typeof object.email === 'string' &&
         typeof object.role === 'string' &&
-        typeof object.isVerified === 'boolean' &&
+        typeof object.isVerified === 'string' &&
         typeof object.iat === 'number' &&
         typeof object.exp === 'number'
     );

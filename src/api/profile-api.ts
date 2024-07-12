@@ -24,7 +24,7 @@ class ProfileApi {
         }
     }
 
-    static async customer2(payload: CustomerRequest, token: string): Promise<CustomerResponse> {
+    static async customer2(payload: any, token: string): Promise<CustomerResponse> {
         try {
             const response = await this.axios.post<CustomerResponse>("/customer/2", payload, {
                 headers: {
