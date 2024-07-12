@@ -6,6 +6,18 @@ export interface CardProps {
     description: string;
 }
 
+// Card Course Props
+export interface CourseCardProps {
+    id: string; 
+    title: string; 
+    ngoName: string, 
+    location: string, 
+    startDate: string, 
+    endDate: string, 
+    quota: string, 
+    skills: string[] 
+}
+
 
 // BACKEND-RELATED COMPONENTS
 // JWT Payload

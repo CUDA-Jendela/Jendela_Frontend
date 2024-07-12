@@ -45,3 +45,51 @@ export const FAQItem = [
     { question: "Can ex-prisoners on Jendela provide products or services?", answer: "Yes, Jendela promotes awareness of ex-prisoners' skills, enabling them to contribute positively through their products and services." },
     { question: "How can NGOs participate in Jendela's mission?", answer: "NGOs can collaborate with Jendela to provide impactful courses and training, empowering ex-prisoners with the skills needed for successful reintegration into society." }
 ];
+
+export const Courses = [
+    {
+        id: "dum1",
+        image: "course1.jpg",
+        title: "Web Development",
+        ngoName: "Tech for Good",
+        location: "New York",
+        startDate: "2024-01-01T12:00:00Z",
+        endDate: "2024-03-31T12:00:00Z",
+        skills: ["HTML", "CSS", "JavaScript"],
+        quota: "20/30",
+    },
+    {
+        id: "dum2",
+        image: "course2.jpg",
+        title: "Data Science",
+        ngoName: "Data for All",
+        location: "San Francisco",
+        startDate: "2024-02-01T12:00:00Z",
+        endDate: "2024-04-30T12:00:00Z",
+        skills: ["Python", "Machine Learning", "Data Analysis"],
+        quota: "15/25",
+    },
+    {
+        id: "dum3",
+        image: "course1.jpg",
+        title: "Web Development",
+        ngoName: "Tech for Good",
+        location: "New York",
+        startDate: "2024-01-01T12:00:00Z",
+        endDate: "2024-03-31T12:00:00Z",
+        skills: ["HTML", "CSS", "JavaScript"],
+        quota: "20/30",
+    },
+    {
+        id: "dum4",
+        image: "course2.jpg",
+        title: "Data Science",
+        ngoName: "Data for All",
+        location: "San Francisco",
+        startDate: "2024-02-01T12:00:00Z",
+        endDate: "2024-04-30T12:00:00Z",
+        skills: ["Python", "Machine Learning", "Data Analysis"],
+        quota: "15/25",
+    },
+    // Add more courses here
+];

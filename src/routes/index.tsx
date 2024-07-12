@@ -6,7 +6,8 @@ import {
     SetupProfileCustomer, 
     SetupProfileNGO, 
     SetupProfileBusiness, 
-    SkillAssessment 
+    SkillAssessment, 
+    Course
 } from "@/pages";
 import { ProtectedRoute, Navbar, Footer } from "@/components";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -37,6 +38,10 @@ const routes: RouteObject[] = [
             {
                 path: "/",
                 element: <Home />,
+            },
+            {
+                path: "/course",
+                element: <Course />,
             }
         ],
     },

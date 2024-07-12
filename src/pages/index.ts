@@ -5,6 +5,7 @@ import SetupProfileBusiness from "./SetupProfileBusiness";
 import SetupProfileCustomer from "./SetupProfileCustomer";
 import SetupProfileNGO from "./SetupProfileNGO";
 import SkillAssessment from "./SkillAssessment";
+import Course from "./Course";
 
 export {
     Home,
@@ -13,5 +14,6 @@ export {
     SetupProfileBusiness,
     SetupProfileCustomer,
     SetupProfileNGO,
-    SkillAssessment
+    SkillAssessment,
+    Course
 };
