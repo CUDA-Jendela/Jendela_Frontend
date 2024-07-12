@@ -14,6 +14,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import AddCourse from "@/pages/AddCourse";
 import ExploreBusiness from "@/pages/Business";
 import ChatbotFloatingButton from "@/components/ChatbotFloatingButton";
+import HiringList from "@/pages/HiringList";
 
 const MainLayout = () => {
     return (
@@ -54,6 +55,10 @@ const routes: RouteObject[] = [
             {
                 path: "/business",
                 element: <ExploreBusiness />,
+            },
+            {
+                path: "/hiring",
+                element: <HiringList />,
             },
         ],
     },
