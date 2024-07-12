@@ -17,13 +17,14 @@ const DashboardCustomer: React.FC = () => {
 
     return (
         <main className="flex flex-col bg-white w-full min-h-screen overflow-x-hidden">
-            <img src={dashboardHeader} className="w-full -mt-1" />
+            <img src={dashboardHeader} className="w-full -mt-12" />
             
             <div className="px-16 pt-4 pb-20">
                 <h1 className="text-6xl font-bold text-primary">Hello, {username}</h1>
+                <h1 className="text-4xl text-black">Welcome back! we're happy to see you again.</h1>
 
                 <h3 className="mt-8 text-4xl font-bold">Courses for you</h3>
-                <p className="mt-3 text-base">We found some courses that match your interests!</p>
+                <p className="mt-1 text-lg">We found some courses that match your interests!</p>
                 <Carousel className="w-full max-w-full p-2 mt-2">
                     <CarouselContent className="flex space-x-0">
                         {Courses.map((course) => (
@@ -39,7 +40,7 @@ const DashboardCustomer: React.FC = () => {
                 <div className="flex flex-row items-center mt-16">
                     <div className="flex flex-col">
                         <h3 className="text-4xl font-bold">Explore more courses</h3>
-                        <p className="mt-3 my-4 text-base">Let's find your passion and develop your skills!</p>
+                        <p className="mt-1 my-4 text-lg">Let's find your passion and develop your skills!</p>
                         <Button 
                             onClick={navigateToCourse}
                             className="w-fit border rounded-3xl text-xl font-bold p-6 bg-white border-primary border-2 text-primary hover:bg-primary hover:text-white"
@@ -61,8 +62,8 @@ const DashboardCustomer: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-end">
                         <h3 className="text-4xl font-bold text-right">Seek job opportunities</h3>
-                        <p className="mt-3 text-base text-right">Let's explore our business partners here.</p>
-                        <p className="mt-0 my-4 text-base text-right">You may be hired by them and experience new things!</p>
+                        <p className="mt-1 text-lg text-right">Let's explore our business partners here.</p>
+                        <p className="mt-0 my-4 text-lg text-right">You may be hired by them and experience new things!</p>
                         <Button 
                             onClick={navigateToCourse}
                             className="w-fit border rounded-3xl text-xl font-bold p-6 bg-white border-primary border-2 text-primary hover:bg-primary hover:text-white"
