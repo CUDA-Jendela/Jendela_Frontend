@@ -61,3 +61,19 @@ export interface RegisterResponse {
   message: string;
   token?: string;
 }
+
+// Self Response
+export interface SelfResponse {
+  success: boolean;
+  user: userData;
+}
+
+// User data
+interface userData {
+  id: string;
+  name: string;
+  password: string;
+  role: string;
+  isVerified: boolean;
+  email: string;
+}
