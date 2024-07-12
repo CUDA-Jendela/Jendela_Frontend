@@ -11,6 +11,7 @@ type AuthContext = {
     login: (payload: LoginRequest) => Promise<void>;
     logout: () => void;
     username: string;
+    email: string;
     update: boolean;
     setUpdate: (prop: boolean) => void;
 };
@@ -22,6 +23,7 @@ const AuthContext = createContext<AuthContext>({
     login: async () => {},
     logout: () => {},
     username: "",
+    email: "",
     update: false,
     setUpdate: () => {}
 });
@@ -32,6 +34,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [role, setRole] = useState<"customer" | "ngo" | "business" | null>(null);
     const [token, setToken] = useState<string | null>(null);
     const [username, setUsername] = useState("user");
+    const [email, setEmail] = useState("");
     const [update, setUpdate] = useState(false);
 
     useEffect(() => {
@@ -46,6 +49,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                         setIsAuthenticated(true);
                         setRole(user.user.role as "customer" | "ngo" | "business");
                         setUsername(user.user.name);
+                        setEmail(user.user.email);
                         setToken(token);
                     }
                 } catch (error) {
@@ -88,7 +92,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <AuthContext.Provider
-            value={{ isAuthenticated, role, token, login, logout, update, setUpdate, username }}
+            value={{ isAuthenticated, role, token, login, logout, update, setUpdate, username, email }}
         >
             {children}
         </AuthContext.Provider>
