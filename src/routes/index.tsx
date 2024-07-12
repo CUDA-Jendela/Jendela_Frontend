@@ -11,6 +11,7 @@ import {
 } from "@/pages";
 import { ProtectedRoute, Navbar, Footer } from "@/components";
 import { AuthProvider } from "@/contexts/AuthContext";
+import AddCourse from "@/pages/AddCourse";
 
 const MainLayout = () => {
     return (
@@ -42,7 +43,11 @@ const routes: RouteObject[] = [
             {
                 path: "/course",
                 element: <Course />,
-            }
+            },
+            {
+                path: "/add-course",
+                element: <AddCourse />,
+            },
         ],
     },
     {

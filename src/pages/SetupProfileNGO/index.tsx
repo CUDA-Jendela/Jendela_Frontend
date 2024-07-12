@@ -105,7 +105,7 @@ const SetupProfileNGO: React.FC = () => {
                                 <FormItem>
                                 <FormLabel>Description</FormLabel>
                                 <FormControl>
-                                    <Input type="text" {...field} />
+                                    <textarea className="h-24 w-full border border-gray-300 rounded-md p-2" {...field}  />
                                 </FormControl>
                                 <FormMessage />
                                 </FormItem>

@@ -21,6 +21,7 @@ module.exports = {
         'custom-gradient': 'linear-gradient(75deg, rgba(74,124,89,1) 45%, rgba(217,191,119,0.7) 78%, rgba(185,163,101,0.3927696078431373) 90%), url("/src/assets/images/hero.jpg")',
         'green-gradient': 'linear-gradient(30deg, rgba(74,124,89,1) 15%, rgba(185,163,101,0.3927696078431373) 90%)',
         'green-yellow-gradient': 'linear-gradient(30deg, rgba(74,124,89,1) 15%, rgba(185,163,101,1) 90%, rgba(217, 191, 119, 1))',
+        'green-yellow-gradient-2': 'linear-gradient(0deg, rgba(74,124,89,1) 15%, rgba(185,163,101,1) 90%, rgba(217, 191, 119, 1))',
       },
       backgroundSize: {
         'full': '100% 100%',
