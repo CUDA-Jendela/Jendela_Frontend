@@ -24,9 +24,22 @@ class ProfileApi {
         }
     }
 
-    static async customer2(payload: any, token: string): Promise<CustomerResponse> {
+    static async customer2(payload: any, token: string): Promise<any> {
         try {
-            const response = await this.axios.post<CustomerResponse>("/customer/2", payload, {
+            const response = await this.axios.post<any>("/customer/2", payload, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    static async ngo(payload: any, token: string): Promise<any> {
+        try {
+            const response = await this.axios.post<any>("/ngo", payload, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                 }

@@ -3,13 +3,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
+import Cookies from "js-cookie";
+import { NGORequest } from "@/types";
+import { ProfileApi } from "@/api";
+import { toast } from "react-toastify";
+import useAuth from "@/contexts/AuthContext";
+import { Loader2 } from "lucide-react";
 
 const SetupProfileNGO: React.FC = () => {
+    const { update, setUpdate } = useAuth();
+
     const form = useForm({
         defaultValues: {
             name: "",
             phone: "",
-            email: "",
             address: "",
             city: "",
             description: "",
@@ -17,8 +24,42 @@ const SetupProfileNGO: React.FC = () => {
         },
     });
         
-    function onSubmit(values: Record<string, unknown>) {
-        console.log(values);
+    async function onSubmit(data: Record<string, unknown>) {
+        // const profilePictureFile = data.profilePicture;
+
+        // Upload the profile picture and get the URL
+        // const profilePictureUrl = await handleFileUpload(profilePictureFile);
+        const profilePictureUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Ffortmyersradon.com%2Ffort-myers-beach-fl-radon-mitigation-testing-test-system-gas%2Fdummy-user-img-1%2F&psig=AOvVaw1rgm_sGf2nk28wgXaPF3S7&ust=1720854518156000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKiMm-L4oIcDFQAAAAAdAAAAABAJ"
+
+        // Token
+        const jwtToken = Cookies.get("j-token");
+        const payload: NGORequest = {
+            name: data.name as string,
+            address: data.address as string,
+            city: data.city as string,
+            description: data.description as string,
+            phoneNumber: data.phone as string,
+            logo: profilePictureUrl
+        };
+
+        setUpdate(true);
+
+        // Submit the response
+        await ProfileApi.customer2(payload, jwtToken as string)
+        .then(() => {
+            toast.success("Registration successful!");
+            // Insert to cookies
+            Cookies.set("j-token", jwtToken as string);
+            window.location.href = "/";
+        })
+        .catch((error) => {
+            // Optionally handle errors
+            console.error("Registration failed:", error);
+            toast.error((error.response?.data as { message: string })?.message || 'Server is unreachable. Please try again later.');
+        })
+        .finally(() => {
+            setUpdate(false);
+        });
     }
 
     return (
@@ -55,20 +96,6 @@ const SetupProfileNGO: React.FC = () => {
                                 </FormItem>
                             )}
                             rules={{ required: "Phone number is required" }}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                    <Input type="email" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                                </FormItem>
-                            )}
-                            rules={{ required: "Email is required" }}
                         />
                         <FormField
                             control={form.control}
@@ -126,7 +153,16 @@ const SetupProfileNGO: React.FC = () => {
                             )}
                             rules={{ required: "Logo is required" }}
                         />
-                        <Button type="submit" className="w-full color-green-50 text-white rounded-full">Next</Button>
+                        <Button type="submit" className="w-full color-green-50 text-white rounded-full hover:bg-color-green-60 transition-transform duration-300 transform hover:scale-105" disabled={update}>
+                            {update ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Next
+                                </>
+                            ) : (
+                                'Next'
+                            )}
+                        </Button>
                     </form>
                 </Form>
             </div>
