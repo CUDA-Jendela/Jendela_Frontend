@@ -29,9 +29,9 @@ export const featureCardData = [
   },
   {
     imageSrc: feature4,
-    title: "AI Recommendations",
+    title: "Personalized Recommendations",
     description:
-      "Utilize AI to provide personalized training tracks based on individual talents and aptitudes.",
+      "Provide personalized training tracks based on individual talents and aptitudes.",
   },
   {
     imageSrc: feature5,

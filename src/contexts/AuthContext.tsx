@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import { verifyToken } from "@/utils/util";
 import { AuthApi, UserApi } from "@/api";
 import { LoginRequest, JwtPayload, LoginResponse, SelfResponse } from "@/types";
+import { toast } from "react-toastify";
 
 type AuthContext = {
     isAuthenticated: boolean;
@@ -76,6 +77,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 setIsVerified(decodedPayload.isVerified as "pending" | "in-progress" | "completed");
                 Cookies.set("j-token", auth.token as string);
                 setToken(auth.token as string);
+                toast.success("Login successful");
                 window.location.href = "/";
             }
         } catch (error) {

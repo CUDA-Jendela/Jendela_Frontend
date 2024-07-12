@@ -33,6 +33,10 @@ const DashboardCustomer: React.FC = () => {
         navigate('/course');
     };
 
+    const navigateToBusiness = () => {
+        navigate('/business');
+    };
+
     return (
         <main className="flex flex-col bg-white w-full min-h-screen overflow-x-hidden">
             <img src={dashboardHeader} className="w-full" />
@@ -84,7 +88,7 @@ const DashboardCustomer: React.FC = () => {
                         <p className="mt-1 text-lg text-right">Let's explore our business partners here.</p>
                         <p className="mt-0 my-4 text-lg text-right">You may be hired by them and experience new things!</p>
                         <Button 
-                            onClick={navigateToCourse}
+                            onClick={navigateToBusiness}
                             className="w-fit border rounded-3xl text-xl font-bold p-6 bg-white border-primary border-2 text-primary hover:bg-primary hover:text-white"
                         >
                                 Explore businesses

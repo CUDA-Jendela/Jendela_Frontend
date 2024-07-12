@@ -67,8 +67,6 @@ const Login: React.FC = () => {
             setUpdate(true);
 
             login(payload);
-
-            toast.success("Login successful");
         } catch (error) {
             console.error("Submit error:", error);
             const err = error as AxiosError;

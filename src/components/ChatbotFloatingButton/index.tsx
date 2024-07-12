@@ -5,9 +5,11 @@ import { Button } from "../ui/button";
 import { ChatData, ChatResponse, Message, SendChatRequest, SendChatResponse } from "@/types";
 import { SendHorizonal } from "lucide-react";
 import ChatApi from "@/api/chat-api";
+import useAuth from "@/contexts/AuthContext";
 
 const ChatbotFloatingButton: React.FC = () => {
     const [chats, setChats] = useState<ChatData[]>([]);
+    const { isAuthenticated } = useAuth();
 
     const [messages, setMessages] = useState<Message[]>([
         { type: 'bot', content: 'Hello! How can I help you today?' },
@@ -88,7 +90,7 @@ const ChatbotFloatingButton: React.FC = () => {
     };
 
     return (
-        <Sheet>
+        isAuthenticated && <Sheet>
             <SheetTrigger asChild>
                 <Button className="fixed bottom-0 right-0 z-10 size-20 p-4 m-8 bg-secondary hover:bg-yellow-60 rounded-full shadow-lg">
                     <img src={chatbotIcon} />
