@@ -16,7 +16,7 @@ const DashboardCustomer: React.FC = () => {
     };
 
     return (
-        <main className="flex flex-col bg-white w-full min-h-screen">
+        <main className="flex flex-col bg-white w-full min-h-screen overflow-x-hidden">
             <img src={dashboardHeader} className="w-full -mt-1" />
             
             <div className="px-16 pt-4 pb-20">
