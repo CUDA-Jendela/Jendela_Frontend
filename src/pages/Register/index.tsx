@@ -79,11 +79,11 @@ const Register: React.FC = () => {
 
                         // Re-route based on role
                         if (decodedPayload.role == "customer") {
-                            navigate("/setup-cust");
+                            window.location.href = "/setup-cust";
                         } else if (decodedPayload.role == "ngo") {
-                            navigate("/setup-ngo");
+                            window.location.href = "/setup-ngo";
                         } else if (decodedPayload.role == "business") {
-                            navigate("/setup-business");
+                            window.location.href = "/setup-business";
                         }
                     } 
                 }
