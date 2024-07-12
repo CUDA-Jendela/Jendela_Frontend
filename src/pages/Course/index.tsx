@@ -1,22 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import CourseCard from "@/components/CourseCard";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Courses } from "@/data";
+import { CourseApi } from "@/api";
+import { CourseCardProps, CoursesResponse } from "@/types";
+import Cookies from "js-cookie";
 
 const Course: React.FC = () => {
     const [search, setSearch] = useState("");
     const [locationFilter, setLocationFilter] = useState("");
     const [skillsFilter, setSkillsFilter] = useState("");
+    const [courses, setCourses] = useState<CourseCardProps[]>();
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value);
     const handleLocationFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => setLocationFilter(e.target.value);
     const handleSkillsFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => setSkillsFilter(e.target.value);
 
-    const filteredCourses = Courses.filter(course =>
-        course.title.toLowerCase().includes(search.toLowerCase()) &&
-        course.location.toLowerCase().includes(locationFilter.toLowerCase()) &&
-        course.skills.some(skill => skill.toLowerCase().includes(skillsFilter.toLowerCase()))
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const jwtToken = Cookies.get("j-token");
+                const courseData : CoursesResponse = await CourseApi.getAll(jwtToken as string);
+                setCourses(courseData.data);
+            } catch (error) {
+                console.error('Failed to fetch skills:', error);
+            }
+        };
+
+        fetchCourses();
+    }, []);
+
+    const filteredCourses = courses!.filter(course =>
+        course.name.toLowerCase().includes(search.toLowerCase()) &&
+        course.ngoCity.toLowerCase().includes(locationFilter.toLowerCase()) &&
+        course.skills.some((skill: string) => skill.toLowerCase().includes(skillsFilter.toLowerCase()))
     );
 
     return (

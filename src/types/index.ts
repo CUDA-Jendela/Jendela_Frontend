@@ -9,12 +9,12 @@ export interface CardProps {
 // Card Course Props
 export interface CourseCardProps {
   id: string;
-  title: string;
+  name: string;
   ngoName: string;
-  location: string;
+  ngoCity: string;
   startDate: string;
   endDate: string;
-  quota: string;
+  quota: number;
   skills: string[];
 }
 
@@ -138,4 +138,11 @@ export interface BusinessRequest {
   address: string;
   phoneNumber: string;
   logoPicture: string;
+}
+
+// Courses Respone
+export interface CoursesResponse {
+  success: boolean;
+  message: string;
+  data: CourseCardProps[];
 }
