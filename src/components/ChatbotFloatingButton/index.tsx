@@ -1,28 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import chatbotIcon from "@/assets/icons/chatbot_icon.png";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
-import { Message } from "@/types";
+import { ChatData, ChatResponse, Message, SendChatRequest, SendChatResponse } from "@/types";
 import { SendHorizonal } from "lucide-react";
+import ChatApi from "@/api/chat-api";
 
 const ChatbotFloatingButton: React.FC = () => {
+    const [chats, setChats] = useState<ChatData[]>([]);
+
     const [messages, setMessages] = useState<Message[]>([
         { type: 'bot', content: 'Hello! How can I help you today?' },
         { type: 'bot', content: 'Feel free to ask me anything.' }
     ]);
     const [input, setInput] = useState<string>("");
 
-    const handleSendMessage = () => {
+    const chatContainerRef = useRef<HTMLDivElement>(null);
+
+    const fetchChats = async () => {
+        try {
+            const chatData: ChatResponse = await ChatApi.getChat();
+            setChats(chatData.data);
+        } catch (error) {
+            console.error('Failed to fetch chats:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchChats();
+    }, []);
+
+    const handleSendMessage = async () => {
         if (input.trim()) {
-            setMessages([...messages, { type: 'user', content: input }]);
+            const userMessage: Message = { type: 'user', content: input };
+            setMessages([...messages, userMessage]);
             setInput("");
-            
-            setTimeout(() => {
-                setMessages(prevMessages => [
-                    ...prevMessages,
-                    { type: 'bot', content: 'Thank you for your message. We will get back to you shortly.' }
-                ]);
-            }, 1000);
+
+            try {
+                const payload: SendChatRequest = { prompt: input };
+                const response: SendChatResponse = await ChatApi.sendChat(payload);
+
+                if (response.success) {
+                    fetchChats();
+                } else {
+                    const errorMessage: Message = { type: 'bot', content: response.message };
+                    setMessages(prevMessages => [...prevMessages, errorMessage]);
+                }
+            } catch (error) {
+                console.error('Failed to send message:', error);
+                const errorMessage: Message = { type: 'bot', content: 'Failed to send message. Please try again.' };
+                setMessages(prevMessages => [...prevMessages, errorMessage]);
+            }
+        }
+    };
+
+    useEffect(() => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }, [messages, chats]);
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            handleSendMessage();
         }
     };
 
@@ -35,15 +75,30 @@ const ChatbotFloatingButton: React.FC = () => {
             </SheetTrigger>
             <SheetContent className="bg-white w-1/2 max-w-3xl">
                 <SheetHeader>
-                    <SheetTitle>Chatbot</SheetTitle>
+                    <SheetTitle>Dela the Chatbot✨</SheetTitle>
                 </SheetHeader>
-                <div className="flex flex-col h-[87%] space-y-4 p-4 bg-white h-64 overflow-y-auto">
-                    {messages.map((message, index) => (
-                        <div 
-                            key={index} 
-                            className={`px-3 py-2 max-w-xs ${message.type === 'bot' ? 'rounded-r-xl rounded-t-xl bg-gray-200 self-start' : 'rounded-l-xl rounded-t-xl bg-primary text-white self-end'}`}
-                        >
-                            {message.content}
+                <div
+                    ref={chatContainerRef}
+                    className="flex flex-col h-[87%] space-y-4 py-4 bg-white h-64 overflow-y-scroll scrollbar-hide"
+                >
+                    <div
+                        key={-1}
+                        className={`px-3 py-2 max-w-[80%] rounded-r-xl rounded-t-xl bg-gray-200 self-start`}
+                    >
+                        Hello! I'm Dela, your personal AI assistant. I will guide you through Jendela platform. You can ask me anything...
+                    </div>
+                    {chats.map((chat, index) => (
+                        <div key={index}>
+                            <div
+                                className={`px-3 py-2 max-w-[80%] rounded-l-xl rounded-t-xl bg-primary text-white self-end`}
+                            >
+                                {chat.question}
+                            </div>
+                            <div
+                                className={`px-3 py-2 max-w-[80%] rounded-r-xl rounded-t-xl bg-gray-200 self-start`}
+                            >
+                                {chat.answer}
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -53,13 +108,11 @@ const ChatbotFloatingButton: React.FC = () => {
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
+                            onKeyPress={handleKeyPress}
                             className="flex-grow p-2 border border-gray-300 rounded-full"
                             placeholder="Type your message..."
                         />
-                        {/* <Button className="rounded-full text-white" onClick={handleSendMessage}>
-                            Send
-                        </Button> */}
-                        <SendHorizonal onClick={handleSendMessage} />
+                        <SendHorizonal onClick={handleSendMessage} className="cursor-pointer" />
                     </div>
                 </SheetFooter>
             </SheetContent>
@@ -68,4 +121,3 @@ const ChatbotFloatingButton: React.FC = () => {
 };
 
 export default ChatbotFloatingButton;
-

@@ -139,3 +139,26 @@ export interface BusinessRequest {
   phoneNumber: string;
   logoPicture: string;
 }
+
+// Get Chat Response
+export interface ChatResponse {
+  success: boolean;
+  message: string;
+  data: ChatData[];
+}
+
+// Chat Data
+export interface ChatData {
+  question: string;
+  answer: string;
+}
+
+// Send Chat
+export interface SendChatRequest {
+  prompt: string;
+}
+
+export interface SendChatResponse {
+  success: boolean;
+  message: string;
+}
