@@ -1,6 +1,5 @@
 import { UserApi } from "@/api";
-import useAuth from "@/contexts/AuthContext";
-import { SelfResponse, userData } from "@/types";
+import { SelfResponse } from "@/types";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import profilePicturePlaceholder from "@/assets/images/profile_placeholder.png";
@@ -9,14 +8,7 @@ import { FaBirthdayCake, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import CourseCard from "@/components/ProfileCourseCard";
 
 const Profile: React.FC = () => {
-    // const { username, profilePicture, email, phone, birthdate, city } = useAuth();
-    const [user, setUser] = useState<userData[]>([]);
     const [username, setUsername] = useState("user");
-    const [profilePicture, setProfilePicture] = useState(profilePicturePlaceholder);
-    const [email, setEmail] = useState("email");
-    const [phone, setPhone] = useState("phone");
-    const [birthdate, setBirthdate] = useState("birthdate");
-    const [city, setCity] = useState("city");
     
     useEffect(() => {
         const fetchUser = async () => {
@@ -75,11 +67,11 @@ const Profile: React.FC = () => {
                     <div className="flex flex-col gap-5 items-center w-full max-h-54 overflow-y-scroll py-8 px-10 bg-neutral-90 shadow-lg rounded-2xl">
                         <h3 className="text-2xl font-semibold text-gray-800 w-full text-left">Courses</h3>
                         <div className="grid grid-cols-3 gap-5 h-full">
-                            <CourseCard id="1" title="Knitting" ngoName="DelaArts" startDate="9 Jan 2024" endDate="20 Jan 2024" skills={["Knitting"]} score="90" />
-                            <CourseCard id="1" title="Knitting" ngoName="DelaArts" startDate="9 Jan 2024" endDate="20 Jan 2024" skills={["Knitting"]} score="90" />
-                            <CourseCard id="1" title="Knitting" ngoName="DelaArts" startDate="9 Jan 2024" endDate="20 Jan 2024" skills={["Knitting"]} score="90" />
-                            <CourseCard id="1" title="Knitting" ngoName="DelaArts" startDate="9 Jan 2024" endDate="20 Jan 2024" skills={["Knitting"]} score="90" />
-                            <CourseCard id="1" title="Knitting" ngoName="DelaArts" startDate="9 Jan 2024" endDate="20 Jan 2024" skills={["Knitting"]} score="90" />
+                            <CourseCard id="1" name="Knitting" ngoCity="Bandung" quota={90} ngoName="DelaArts" startDate="9 Jan 2024" endDate="20 Jan 2024" skills={["Knitting"]} score="90" />
+                            <CourseCard id="1" name="Knitting" ngoCity="Bandung" quota={90} ngoName="DelaArts" startDate="9 Jan 2024" endDate="20 Jan 2024" skills={["Knitting"]} score="90" />
+                            <CourseCard id="1" name="Knitting" ngoCity="Bandung" quota={90} ngoName="DelaArts" startDate="9 Jan 2024" endDate="20 Jan 2024" skills={["Knitting"]} score="90" />
+                            <CourseCard id="1" name="Knitting" ngoCity="Bandung" quota={90} ngoName="DelaArts" startDate="9 Jan 2024" endDate="20 Jan 2024" skills={["Knitting"]} score="90" />
+                            <CourseCard id="1" name="Knitting" ngoCity="Bandung" quota={90} ngoName="DelaArts" startDate="9 Jan 2024" endDate="20 Jan 2024" skills={["Knitting"]} score="90" />
                         </div>
                     </div>
                 </div>

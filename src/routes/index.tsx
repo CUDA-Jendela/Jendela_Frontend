@@ -9,7 +9,7 @@ import {
     SkillAssessment, 
     Course
 } from "@/pages";
-import { ProtectedRoute, Navbar, Footer } from "@/components";
+import { Navbar, Footer } from "@/components";
 import { AuthProvider } from "@/contexts/AuthContext";
 import AddCourse from "@/pages/AddCourse";
 import ExploreBusiness from "@/pages/Business";

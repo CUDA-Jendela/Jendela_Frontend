@@ -1,9 +1,8 @@
 import React from 'react';
 import { CourseCardProps } from '@/types';
-import { FaCalendarAlt } from "react-icons/fa";
 import { format } from "date-fns";
 
-const CourseCard: React.FC<CourseCardProps> = ({ id, title, ngoName, startDate, endDate, skills, score }) => {
+const CourseCard: React.FC<CourseCardProps> = ({ id, name, ngoName, startDate, endDate, skills, score }) => {
     const formatDate = (dateString: string) => {
         return format(new Date(dateString), "dd MMM yyyy");
     };
@@ -17,7 +16,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ id, title, ngoName, startDate, 
                 <p className="font-bold text-5xl text-center text-white">{score}</p>
             </div>
             <div className="max-w-[75%] p-4">
-                <h2 className="text-xl font-semibold">{title}</h2>
+                <h2 className="text-xl font-semibold">{name}</h2>
                 <p className="text-sm pb-1 text-gray-500">{ngoName}</p>
                 <p className="text-sm">
                     {`${formatDate(startDate)} - ${formatDate(endDate)}`}

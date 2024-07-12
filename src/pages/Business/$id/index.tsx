@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import { businesses } from "@/data";
-import { Button } from "@/components/ui/button";
 
 const BusinessDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();

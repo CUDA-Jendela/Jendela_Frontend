@@ -191,35 +191,35 @@ export const businesses = [
 
 export const People = [
   {
-    id: 1,
+    id: "1",
     profilePicture: profilePlaceholder,
     name: "Michael Leon",
     city: "Bandung",
     skills: ["Driving", "Cooking"],
   },
   {
-    id: 2,
+    id: "2",
     profilePicture: profilePlaceholder,
     name: "Austin Pardosi",
     city: "Medan",
     skills: ["Photography", "Plumbing", "Computer"],
   },
   {
-    id: 3,
+    id: "3",
     profilePicture: profilePlaceholder,
     name: "Go Dillon",
     city: "Jakarta",
     skills: ["Baking", "Knitting", "Cooking"],
   },
   {
-    id: 4,
+    id: "4",
     profilePicture: profilePlaceholder,
     name: "Arleen Gunardi",
     city: "Bandung",
     skills: ["Photography", "Hair Styling"],
   },
   {
-    id: 5,
+    id: "5",
     profilePicture: profilePlaceholder,
     name: "Dela Garuda",
     city: "Bandung",
