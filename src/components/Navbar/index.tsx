@@ -35,15 +35,21 @@ const Navbar: React.FC = () => {
 
             {/* Right side */}
             <div className='space-x-4 flex h-full items-center'>
-                {role == "customer" && (<><Link to="/course" className="text-white text-lg font-semibold hover:underline hover:underline-offset-4 p-1.5 px-5 rounded-3xl transition-transform duration-300 transform hover:scale-110">
+                {(role == "customer" || role == "ngo" || role == "business") && <Link to="/course" className="text-white text-lg font-semibold hover:underline hover:underline-offset-4 p-1.5 px-5 rounded-3xl transition-transform duration-300 transform hover:scale-110">
                     Courses
-                </Link>
-                <Link to="/" className="text-white text-lg font-semibold hover:underline hover:underline-offset-4 p-1.5 px-5 rounded-3xl transition-transform duration-300 transform hover:scale-110">
+                </Link>}
+
+                {(role == "customer" || role == "business") && <Link to="/business" className="text-white text-lg font-semibold hover:underline hover:underline-offset-4 p-1.5 px-5 rounded-3xl transition-transform duration-300 transform hover:scale-110">
                     Business
-                </Link>
-                <Link to="/" className="text-white text-lg font-semibold hover:underline hover:underline-offset-4 p-1.5 px-5 rounded-3xl transition-transform duration-300 transform hover:scale-110">
+                </Link>}
+
+                {(role == "customer" || role == "ngo" || role == "business") && <Link to="/profile" className="text-white text-lg font-semibold hover:underline hover:underline-offset-4 p-1.5 px-5 rounded-3xl transition-transform duration-300 transform hover:scale-110">
                     Profile
-                </Link></>)}
+                </Link>}
+
+                {(role == "business") && <Link to="/hiring" className="text-white text-lg font-bold">
+                    <Button className="border rounded-3xl text-lg px-8 border-white text-white hover:bg-white hover:text-primary hover:font-bold">Hiring List</Button>
+                </Link>}
 
                 {role == null && <Link to="/login" className="text-white text-lg font-bold">
                     <Button className="border rounded-3xl text-lg px-8 border-white text-white hover:bg-white hover:text-primary hover:font-bold">Login</Button>
