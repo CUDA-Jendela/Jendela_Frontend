@@ -6,7 +6,7 @@ import feature5 from "@/assets/images/feature5.jpg";
 import feature6 from "@/assets/images/feature6.jpg";
 
 import logoPlaceholder from "@/assets/images/logo_placeholder.png";
-import profilePlaceholder from "@/assets/images/profile_placeholder.png";
+// import profilePlaceholder from "@/assets/images/profile_placeholder.png";
 
 export const featureCardData = [
   {
