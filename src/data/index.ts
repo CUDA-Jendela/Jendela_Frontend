@@ -6,6 +6,7 @@ import feature5 from "@/assets/images/feature5.jpg";
 import feature6 from "@/assets/images/feature6.jpg";
 
 import logoPlaceholder from "@/assets/images/logo_placeholder.png";
+import profilePlaceholder from "@/assets/images/profile_placeholder.png";
 
 export const featureCardData = [
   {
@@ -157,5 +158,43 @@ export const businesses = [
     name: "Coffee Cafe",
     industry: "Food and beverages",
     city: "Bandung",
+  },
+];
+
+export const People = [
+  {
+    id: 1,
+    profilePicture: profilePlaceholder,
+    name: "Michael Leon",
+    city: "Bandung",
+    skills: ["Driving", "Cooking"],
+  },
+  {
+    id: 2,
+    profilePicture: profilePlaceholder,
+    name: "Austin Pardosi",
+    city: "Medan",
+    skills: ["Photography", "Plumbing", "Computer"],
+  },
+  {
+    id: 3,
+    profilePicture: profilePlaceholder,
+    name: "Go Dillon",
+    city: "Jakarta",
+    skills: ["Baking", "Knitting", "Cooking"],
+  },
+  {
+    id: 4,
+    profilePicture: profilePlaceholder,
+    name: "Arleen Gunardi",
+    city: "Bandung",
+    skills: ["Photography", "Hair Styling"],
+  },
+  {
+    id: 5,
+    profilePicture: profilePlaceholder,
+    name: "Dela Garuda",
+    city: "Bandung",
+    skills: ["Painting", "Sketching"],
   },
 ];

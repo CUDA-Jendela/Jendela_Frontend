@@ -25,6 +25,14 @@ export interface BusinessCardProps {
   city: string;
 }
 
+export interface CustomerCardProps {
+  id: string;
+  profilePicture: string;
+  name: string;
+  city: string;
+  skills: string[];
+}
+
 // BACKEND-RELATED COMPONENTS
 // JWT Payload
 export interface JwtPayload {
