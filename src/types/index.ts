@@ -19,6 +19,19 @@ export interface CourseCardProps {
   score: string;
 }
 
+export interface CourseCardProps2 {
+  id: string;
+  name: string;
+  ngoName: string;
+  ngoCity: string;
+  startDate: string;
+  endDate: string;
+  quota: number;
+  skills: string[];
+  score: string;
+  description: string;
+}
+
 export interface BusinessCardProps {
   id: string;
   logo: string;
@@ -174,6 +187,13 @@ export interface CoursesResponse {
   success: boolean;
   message: string;
   data: CourseCardProps[];
+}
+
+// Courses Respone
+export interface CourseResponse {
+  success: boolean;
+  message: string;
+  data: CourseCardProps2;
 }
 
 // Courses Respone

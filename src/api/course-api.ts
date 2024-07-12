@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { CourseAddRequest, CoursesResponse, LocationResponse } from "@/types";
+import { CourseAddRequest, CourseResponse, CoursesResponse, LocationResponse } from "@/types";
 import { API_URL_LOCAL } from "@/constant";
 
 class CourseApi {
@@ -14,6 +14,20 @@ class CourseApi {
     static async getAll(token: string): Promise<CoursesResponse> {
         try {
             const response = await this.axios.get<CoursesResponse>(`/course/list`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
+
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    static async getById(token: string, id: string): Promise<CourseResponse> {
+        try {
+            const response = await this.axios.get<CourseResponse>(`/course/${id}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                 }
