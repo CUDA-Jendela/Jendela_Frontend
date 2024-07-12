@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { CustomerRequest, CustomerResponse } from "@/types";
+import { CustomerRequest, CustomerResponse, JwtPayload } from "@/types";
 import useAuth from "@/contexts/AuthContext";
 import { ProfileApi } from "@/api";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { AxiosError } from "axios";
 import { Loader2 } from "lucide-react";
+import { verifyToken } from "@/utils/util";
 
 const SetupProfileCustomer: React.FC = () => {
     const { update, setUpdate } = useAuth();
@@ -33,8 +34,11 @@ const SetupProfileCustomer: React.FC = () => {
             // const profilePictureUrl = await handleFileUpload(profilePictureFile);
             const profilePictureUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Ffortmyersradon.com%2Ffort-myers-beach-fl-radon-mitigation-testing-test-system-gas%2Fdummy-user-img-1%2F&psig=AOvVaw1rgm_sGf2nk28wgXaPF3S7&ust=1720854518156000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKiMm-L4oIcDFQAAAAAdAAAAABAJ"
 
+            // Token
+            const jwtToken = Cookies.get("j-token");
+            const decodedPayload: JwtPayload = verifyToken(jwtToken as string) as JwtPayload;
             const payload: CustomerRequest = {
-                userID: "220",
+                userID: decodedPayload.id,
                 name: data.name as string,
                 birthDate: birthdate,
                 city: data.city as string,
@@ -45,7 +49,7 @@ const SetupProfileCustomer: React.FC = () => {
             setUpdate(true);
 
             // Submit the response
-            const customerResponse: CustomerResponse = await ProfileApi.customer(payload);
+            const customerResponse: CustomerResponse = await ProfileApi.customer1(payload, jwtToken as string);
             if (customerResponse.success) {
                 toast.success(customerResponse.message as string);
                 if (customerResponse.token) {

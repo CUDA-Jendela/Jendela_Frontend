@@ -24,14 +24,31 @@ const formSchema = z.object({
 })
 
 const Login: React.FC = () => {
-    const { isAuthenticated, login, update, setUpdate } = useAuth();
+    const { isAuthenticated, login, role, isVerified, update, setUpdate } = useAuth();
     const navigate = useNavigate();
     
     useEffect(() => {
         if (isAuthenticated) {
             navigate("/");
         }
-    }, [isAuthenticated, navigate]);
+
+        // role
+        if (role === "customer") {
+            if (isVerified == "pending") {
+                navigate("/setup-cust");
+            } else if (isVerified == "in-progress") {
+                navigate("/setup-cust-skill");
+            }
+        } else if (role === "ngo") {
+            if (isVerified == "pending") {
+                navigate("/setup-ngo");
+            }
+        } else if (role === "business") {
+            if (isVerified == "pending") {
+                navigate("/setup-business");
+            }
+        }
+    }, [isAuthenticated, isVerified, role, navigate]);
     
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),

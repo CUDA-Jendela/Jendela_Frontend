@@ -12,6 +12,7 @@ type AuthContext = {
     logout: () => void;
     username: string;
     update: boolean;
+    isVerified: "pending" | "in-progress" | "completed";
     setUpdate: (prop: boolean) => void;
 };
 
@@ -23,6 +24,7 @@ const AuthContext = createContext<AuthContext>({
     logout: () => {},
     username: "",
     update: false,
+    isVerified: "pending",
     setUpdate: () => {}
 });
 
@@ -32,6 +34,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [role, setRole] = useState<"customer" | "ngo" | "business" | null>(null);
     const [token, setToken] = useState<string | null>(null);
     const [username, setUsername] = useState("user");
+    const [isVerified, setIsVerified] = useState<"pending" | "in-progress" | "completed">("pending");
     const [update, setUpdate] = useState(false);
 
     useEffect(() => {
@@ -45,11 +48,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                     if (user) {
                         setIsAuthenticated(true);
                         setRole(user.user.role as "customer" | "ngo" | "business");
-                        setUsername(user.user?.name || "user");
+                        setUsername(user.user.name || "user");
+                        setIsVerified(user.user.isVerified as "pending" | "in-progress" | "completed");
                         setToken(token);
                     }
                 } catch (error) {
-                    Cookies.remove("j-token");
+                    // console.log(user);
+                    // Cookies.remove("j-token");
                     console.error(error);
                 }
             }
@@ -68,6 +73,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 setIsAuthenticated(true);
                 const decodedPayload: JwtPayload = verifyToken(auth.token as string) as JwtPayload;
                 setRole(decodedPayload.role);
+                setIsVerified(decodedPayload.isVerified as "pending" | "in-progress" | "completed");
                 Cookies.set("j-token", auth.token as string);
                 setToken(auth.token as string);
                 window.location.href = "/";
@@ -81,6 +87,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const logout = () => {
         setIsAuthenticated(false);
         setRole(null);
+        setIsVerified("pending");
         Cookies.remove("j-token");
         setToken(null);
     };
@@ -89,7 +96,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <AuthContext.Provider
-            value={{ isAuthenticated, role, token, login, logout, update, setUpdate, username }}
+            value={{ isAuthenticated, role, token, login, logout, update, setUpdate, isVerified, username }}
         >
             {children}
         </AuthContext.Provider>
